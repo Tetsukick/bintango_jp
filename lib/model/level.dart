@@ -1,93 +1,66 @@
 import 'package:bintango_jp/gen/assets.gen.dart';
 
 enum LevelGroup {
-  superEasy,
-  easy,
-  medium,
-  hard,
-  superHard
+  n5,
+  n4,
+  n3
 }
 
 extension LevelGroupExt on LevelGroup {
-  List<int> get range {
+  int get range {
     switch (this) {
-      case LevelGroup.superEasy:
-        return [1,2];
-      case LevelGroup.easy:
-        return [3,4];
-      case LevelGroup.medium:
-        return [5,6];
-      case LevelGroup.hard:
-        return [7,8];
-      case LevelGroup.superHard:
-        return [9,10];
+      case LevelGroup.n5:
+        return 1;
+      case LevelGroup.n4:
+        return 2;
+      case LevelGroup.n3:
+        return 3;
     }
   }
 
   String get title {
     switch (this) {
-      case LevelGroup.superEasy:
-        return '超初級';
-      case LevelGroup.easy:
-        return '初級';
-      case LevelGroup.medium:
-        return '中級';
-      case LevelGroup.hard:
-        return '上級';
-      case LevelGroup.superHard:
-        return '超上級';
+      case LevelGroup.n5:
+        return 'N%';
+      case LevelGroup.n4:
+        return 'N4';
+      case LevelGroup.n3:
+        return 'N3';
     }
   }
 
   SvgGenImage get svg {
     switch (this) {
-      case LevelGroup.superEasy:
+      case LevelGroup.n5:
         return Assets.svg.cat;
-      case LevelGroup.easy:
+      case LevelGroup.n4:
         return Assets.svg.easy;
-      case LevelGroup.medium:
+      case LevelGroup.n3:
         return Assets.svg.world;
-      case LevelGroup.hard:
-        return Assets.svg.difficult;
-      case LevelGroup.superHard:
-        return Assets.svg.ufo;
     }
   }
 
   double get testFactor {
     switch (this) {
-      case LevelGroup.superEasy:
+      case LevelGroup.n5:
         return 1.0;
-      case LevelGroup.easy:
+      case LevelGroup.n4:
         return 1.2;
-      case LevelGroup.medium:
+      case LevelGroup.n3:
         return 1.5;
-      case LevelGroup.hard:
-        return 1.8;
-      case LevelGroup.superHard:
-        return 2.0;
     }
   }
 
   static LevelGroup intToLevelGroup({required int value}) {
     switch (value) {
       case 1:
+        return LevelGroup.n5;
       case 2:
-        return LevelGroup.superEasy;
+        return LevelGroup.n4;
       case 3:
-      case 4:
-        return LevelGroup.easy;
-      case 5:
-      case 6:
-        return LevelGroup.medium;
-      case 7:
-      case 8:
-        return LevelGroup.hard;
-      case 9:
-      case 10:
-        return LevelGroup.superHard;
+        return LevelGroup.n3;
       default:
-        return LevelGroup.superEasy;
+        return LevelGroup.n5;
     }
   }
 }
