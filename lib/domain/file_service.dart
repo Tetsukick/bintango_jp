@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:googleapis/drive/v2.dart';
-import 'package:indonesia_flash_card/model/lecture.dart';
-import 'package:indonesia_flash_card/repository/gdrive_repo.dart';
-import 'package:indonesia_flash_card/utils/logger.dart';
+import 'package:bintango_jp/model/lecture.dart';
+import 'package:bintango_jp/repository/gdrive_repo.dart';
+import 'package:bintango_jp/utils/logger.dart';
 
 final fileControllerProvider = StateNotifierProvider<FileController, List<LectureFolder>>(
       (ref) => FileController(GDriveRepo(), initialLectures: List<LectureFolder>.empty()),

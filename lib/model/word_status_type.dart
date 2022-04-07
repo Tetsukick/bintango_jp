@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:indonesia_flash_card/gen/assets.gen.dart';
+import 'package:bintango_jp/gen/assets.gen.dart';
 
 import '../utils/analytics/analytics_parameters.dart';
 

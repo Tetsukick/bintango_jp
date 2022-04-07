@@ -1,10 +1,10 @@
-import 'package:indonesia_flash_card/model/category.dart';
-import 'package:indonesia_flash_card/model/lecture.dart';
-import 'package:indonesia_flash_card/model/level.dart';
-import 'package:indonesia_flash_card/model/part_of_speech.dart';
-import 'package:indonesia_flash_card/model/tango_entity.dart';
-import 'package:indonesia_flash_card/model/translate_master.dart';
-import 'package:indonesia_flash_card/repository/sheat_repo.dart';
+import 'package:bintango_jp/model/category.dart';
+import 'package:bintango_jp/model/lecture.dart';
+import 'package:bintango_jp/model/level.dart';
+import 'package:bintango_jp/model/part_of_speech.dart';
+import 'package:bintango_jp/model/tango_entity.dart';
+import 'package:bintango_jp/model/translate_master.dart';
+import 'package:bintango_jp/repository/sheat_repo.dart';
 
 class TangoMaster {
   Dictionary dictionary = Dictionary();

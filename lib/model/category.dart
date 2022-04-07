@@ -1,21 +1,34 @@
-import 'package:indonesia_flash_card/gen/assets.gen.dart';
+import 'package:bintango_jp/gen/assets.gen.dart';
 
 enum TangoCategory {
-  work,
-  food,
-  time,
-  tool,
-  building,
-  money,
-  unit,
-  event,
-  fashion,
-  body,
-  vehicle,
+  number,
+  occupation,
   country,
-  hobby,
-  color,
-  plantsAndAnimals,
+  language,
+  places,
+  season,
+  people,
+  animals,
+  clothing,
+  nature,
+  bodyParts,
+  food,
+  beverage,
+  fruits,
+  vehicles,
+  sports,
+  stationery,
+  home,
+  dayOfTheWeek,
+  dateTime,
+  musicAndInstrument,
+  verb1,
+  verb2,
+  verb3,
+  adverbs,
+  iAdjective,
+  naAdjective,
+  interrogative,
 }
 
 extension TangoCategoryExt on TangoCategory {
@@ -23,108 +36,186 @@ extension TangoCategoryExt on TangoCategory {
 
   String get title {
     switch (this) {
-      case TangoCategory.work:
-        return '人物・職業';
-      case TangoCategory.food:
-        return '食べ物・飲み物';
-      case TangoCategory.time:
-        return '時間・曜日';
-      case TangoCategory.tool:
-        return '道具';
-      case TangoCategory.building:
-        return '建物・場所';
-      case TangoCategory.money:
-        return 'お金';
-      case TangoCategory.unit:
-        return '単位';
-      case TangoCategory.event:
-        return 'イベント';
-      case TangoCategory.fashion:
-        return '服';
-      case TangoCategory.body:
-        return '身体';
-      case TangoCategory.vehicle:
-        return '乗り物';
+      case TangoCategory.number:
+        return 'Number';
+      case TangoCategory.occupation:
+        return 'Occupation';
       case TangoCategory.country:
-        return '国';
-      case TangoCategory.hobby:
-        return '娯楽';
-      case TangoCategory.color:
-        return '色';
-      case TangoCategory.plantsAndAnimals:
-        return '動植物';
+        return 'COuntry';
+      case TangoCategory.language:
+        return 'Language';
+      case TangoCategory.places:
+        return 'Place';
+      case TangoCategory.season:
+        return 'Season';
+      case TangoCategory.people:
+        return 'People';
+      case TangoCategory.animals:
+        return 'Animal';
+      case TangoCategory.clothing:
+        return 'Clothing';
+      case TangoCategory.nature:
+        return 'Nature';
+      case TangoCategory.bodyParts:
+        return 'Boddy Parts';
+      case TangoCategory.food:
+        return 'Food';
+      case TangoCategory.beverage:
+        return 'Beverage';
+      case TangoCategory.fruits:
+        return 'Fruits';
+      case TangoCategory.vehicles:
+        return 'Vehicles';
+      case TangoCategory.sports:
+        return 'Sports';
+      case TangoCategory.stationery:
+        return 'Stationery';
+      case TangoCategory.home:
+        return 'Home';
+      case TangoCategory.dayOfTheWeek:
+        return 'Day of the week';
+      case TangoCategory.dateTime:
+        return 'Date/Time';
+      case TangoCategory.musicAndInstrument:
+        return 'Music/Instrument';
+      case TangoCategory.verb1:
+        return 'Verb1 (U-verbs)';
+      case TangoCategory.verb2:
+        return 'Verb2 (Ru-verbs)';
+      case TangoCategory.verb3:
+        return 'Verb3 (Irregular verbs)';
+      case TangoCategory.adverbs:
+        return 'Adverbs';
+      case TangoCategory.iAdjective:
+        return 'i - Adverbs';
+      case TangoCategory.naAdjective:
+        return 'na - Adverbs';
+      case TangoCategory.interrogative:
+        return 'Interrogative';
     }
   }
 
   SvgGenImage get svg {
     switch (this) {
-      case TangoCategory.work:
-        return Assets.svg.work2;
-      case TangoCategory.food:
-        return Assets.svg.eat;
-      case TangoCategory.time:
-        return Assets.svg.time2;
-      case TangoCategory.tool:
-        return Assets.svg.tool2;
-      case TangoCategory.building:
-        return Assets.svg.building2;
-      case TangoCategory.money:
-        return Assets.svg.money2;
-      case TangoCategory.unit:
-        return Assets.svg.unit2;
-      case TangoCategory.event:
-        return Assets.svg.event3;
-      case TangoCategory.fashion:
-        return Assets.svg.fashion4;
-      case TangoCategory.body:
-        return Assets.svg.sport2;
-      case TangoCategory.vehicle:
-        return Assets.svg.vehicle3;
+      case TangoCategory.number:
+        return Assets.svg.money;
+      case TangoCategory.occupation:
+        return Assets.svg.work;
       case TangoCategory.country:
         return Assets.svg.world2;
-      case TangoCategory.hobby:
-        return Assets.svg.tennis;
-      case TangoCategory.color:
+      case TangoCategory.language:
+        return Assets.svg.world2;
+      case TangoCategory.places:
+        return Assets.svg.building2;
+      case TangoCategory.season:
+        return Assets.svg.event;
+      case TangoCategory.people:
         return Assets.svg.shodou;
-      case TangoCategory.plantsAndAnimals:
+      case TangoCategory.animals:
         return Assets.svg.bear;
+      case TangoCategory.clothing:
+        return Assets.svg.fashion4;
+      case TangoCategory.nature:
+        return Assets.svg.world;
+      case TangoCategory.bodyParts:
+        return Assets.svg.sport2;
+      case TangoCategory.food:
+        return Assets.svg.food2;
+      case TangoCategory.beverage:
+        return Assets.svg.drink;
+      case TangoCategory.fruits:
+        return Assets.svg.food2;
+      case TangoCategory.vehicles:
+        return Assets.svg.vehicle3;
+      case TangoCategory.sports:
+        return Assets.svg.sports1;
+      case TangoCategory.stationery:
+        return Assets.svg.tool2;
+      case TangoCategory.home:
+        return Assets.svg.buildings;
+      case TangoCategory.dayOfTheWeek:
+        return Assets.svg.shodou;
+      case TangoCategory.dateTime:
+        return Assets.svg.day;
+      case TangoCategory.musicAndInstrument:
+        return Assets.svg.music;
+      case TangoCategory.verb1:
+        return Assets.svg.superhero;
+      case TangoCategory.verb2:
+        return Assets.svg.summerVacation;
+      case TangoCategory.verb3:
+        return Assets.svg.difficult2;
+      case TangoCategory.adverbs:
+        return Assets.svg.shodou;
+      case TangoCategory.iAdjective:
+        return Assets.svg.difficult;
+      case TangoCategory.naAdjective:
+        return Assets.svg.cat;
+      case TangoCategory.interrogative:
+        return Assets.svg.event2;
     }
   }
 
   static TangoCategory intToCategory({required int value}) {
     switch (value) {
       case 1:
-        return TangoCategory.work;
+        return TangoCategory.number;
       case 2:
-        return TangoCategory.food;
+        return TangoCategory.occupation;
       case 3:
-        return TangoCategory.time;
-      case 4:
-        return TangoCategory.tool;
-      case 5:
-        return TangoCategory.building;
-      case 6:
-        return TangoCategory.money;
-      case 7:
-        return TangoCategory.unit;
-      case 8:
-        return TangoCategory.event;
-      case 9:
-        return TangoCategory.fashion;
-      case 10:
-        return TangoCategory.body;
-      case 11:
-        return TangoCategory.vehicle;
-      case 12:
         return TangoCategory.country;
+      case 4:
+        return TangoCategory.language;
+      case 5:
+        return TangoCategory.places;
+      case 6:
+        return TangoCategory.season;
+      case 7:
+        return TangoCategory.people;
+      case 8:
+        return TangoCategory.animals;
+      case 9:
+        return TangoCategory.clothing;
+      case 10:
+        return TangoCategory.nature;
+      case 11:
+        return TangoCategory.bodyParts;
+      case 12:
+        return TangoCategory.food;
       case 13:
-        return TangoCategory.hobby;
+        return TangoCategory.beverage;
       case 14:
-        return TangoCategory.color;
+        return TangoCategory.fruits;
       case 15:
-        return TangoCategory.plantsAndAnimals;
+        return TangoCategory.vehicles;
+      case 16:
+        return TangoCategory.sports;
+      case 17:
+        return TangoCategory.stationery;
+      case 18:
+        return TangoCategory.home;
+      case 19:
+        return TangoCategory.dayOfTheWeek;
+      case 20:
+        return TangoCategory.dateTime;
+      case 21:
+        return TangoCategory.musicAndInstrument;
+      case 22:
+        return TangoCategory.verb1;
+      case 23:
+        return TangoCategory.verb2;
+      case 24:
+        return TangoCategory.verb3;
+      case 25:
+        return TangoCategory.adverbs;
+      case 26:
+        return TangoCategory.iAdjective;
+      case 27:
+        return TangoCategory.naAdjective;
+      case 28:
+        return TangoCategory.interrogative;
       default:
-        return TangoCategory.work;
+        return TangoCategory.language;
     }
   }
 }

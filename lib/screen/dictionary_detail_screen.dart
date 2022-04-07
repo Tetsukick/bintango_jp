@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:indonesia_flash_card/config/color_config.dart';
-import 'package:indonesia_flash_card/config/size_config.dart';
-import 'package:indonesia_flash_card/gen/assets.gen.dart';
-import 'package:indonesia_flash_card/model/part_of_speech.dart';
-import 'package:indonesia_flash_card/model/tango_entity.dart';
-import 'package:indonesia_flash_card/utils/common_text_widget.dart';
+import 'package:bintango_jp/config/color_config.dart';
+import 'package:bintango_jp/config/size_config.dart';
+import 'package:bintango_jp/gen/assets.gen.dart';
+import 'package:bintango_jp/model/part_of_speech.dart';
+import 'package:bintango_jp/model/tango_entity.dart';
+import 'package:bintango_jp/utils/common_text_widget.dart';
 import 'package:lottie/lottie.dart';
 
 import '../config/config.dart';

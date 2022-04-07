@@ -1,5 +1,5 @@
-import 'package:indonesia_flash_card/generated/json/base/json_convert_content.dart';
-import 'package:indonesia_flash_card/model/translate_response_entity.dart';
+import 'package:bintango_jp/generated/json/base/json_convert_content.dart';
+import 'package:bintango_jp/model/translate_response_entity.dart';
 
 TranslateResponseEntity $TranslateResponseEntityFromJson(Map<String, dynamic> json) {
 	final TranslateResponseEntity translateResponseEntity = TranslateResponseEntity();

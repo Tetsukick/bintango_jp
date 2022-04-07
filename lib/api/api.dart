@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:indonesia_flash_card/api/clients/general_client.dart';
+import 'package:bintango_jp/api/clients/general_client.dart';
 import 'package:logger/logger.dart';
 
 class Api {

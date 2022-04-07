@@ -1,5 +1,5 @@
 import 'package:googleapis/drive/v2.dart';
-import 'package:indonesia_flash_card/utils/logger.dart';
+import 'package:bintango_jp/utils/logger.dart';
 import 'auth_repo.dart';
 
 class GDriveRepo {

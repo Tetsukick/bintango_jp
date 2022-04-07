@@ -3,7 +3,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import io.flutter.embedding.android.SplashScreen
-import com.tetsukick.indonesia.flash.card.R
+import com.tetsukick.bintango.jp.R
 
 class SplashView : SplashScreen {
     override fun createSplashView(context: Context, savedInstanceState: Bundle?): View? =

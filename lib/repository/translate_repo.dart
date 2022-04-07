@@ -1,7 +1,7 @@
-import 'package:indonesia_flash_card/api/api.dart';
-import 'package:indonesia_flash_card/api/clients/general_client.dart';
-import 'package:indonesia_flash_card/model/translate_response_entity.dart';
-import 'package:indonesia_flash_card/utils/logger.dart';
+import 'package:bintango_jp/api/api.dart';
+import 'package:bintango_jp/api/clients/general_client.dart';
+import 'package:bintango_jp/model/translate_response_entity.dart';
+import 'package:bintango_jp/utils/logger.dart';
 
 class TranslateRepo {
   Api translateApi = Api(generalClient: GeneralClient(
