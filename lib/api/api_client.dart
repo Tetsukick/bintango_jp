@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:indonesia_flash_card/api/api_error.dart';
-import 'package:indonesia_flash_card/api/response/response_object.dart';
-import 'package:indonesia_flash_card/config/config.dart';
+import 'package:bintango_jp/api/api_error.dart';
+import 'package:bintango_jp/api/response/response_object.dart';
+import 'package:bintango_jp/config/config.dart';
 import 'package:logger/logger.dart';
 import 'api_exception.dart';
 import 'api_response.dart';

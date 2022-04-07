@@ -1,5 +1,5 @@
-import 'package:indonesia_flash_card/generated/json/base/json_convert_content.dart';
-import 'package:indonesia_flash_card/model/tango_entity.dart';
+import 'package:bintango_jp/generated/json/base/json_convert_content.dart';
+import 'package:bintango_jp/model/tango_entity.dart';
 
 TangoEntity $TangoEntityFromJson(Map<String, dynamic> json) {
 	final TangoEntity tangoEntity = TangoEntity();

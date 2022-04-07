@@ -1,5 +1,5 @@
-import 'package:indonesia_flash_card/generated/json/base/json_convert_content.dart';
-import 'package:indonesia_flash_card/utils/analytics/analytics_event_entity.dart';
+import 'package:bintango_jp/generated/json/base/json_convert_content.dart';
+import 'package:bintango_jp/utils/analytics/analytics_event_entity.dart';
 
 AnalyticsEventEntity $AnalyticsEventEntityFromJson(Map<String, dynamic> json) {
 	final AnalyticsEventEntity analyticsEventEntity = AnalyticsEventEntity();

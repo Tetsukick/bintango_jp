@@ -9,7 +9,7 @@ Flash card application of Indonesian language for Japanese
 
 ## ストア情報
 iOS: https://apps.apple.com/app/id1607987786  
-Android: https://play.google.com/store/apps/details?id=com.tetsukick.indonesia.flash.card  
+Android: https://play.google.com/store/apps/details?id=com.tetsukick.bintango.jp  
 
 ## 開発環境情報
 

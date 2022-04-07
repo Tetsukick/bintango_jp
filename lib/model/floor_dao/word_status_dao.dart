@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:indonesia_flash_card/model/floor_entity/word_status.dart';
+import 'package:bintango_jp/model/floor_entity/word_status.dart';
 
 @dao
 abstract class WordStatusDao {

@@ -1,4 +1,4 @@
-import 'package:indonesia_flash_card/gen/assets.gen.dart';
+import 'package:bintango_jp/gen/assets.gen.dart';
 
 enum Rank {
   E_minus,

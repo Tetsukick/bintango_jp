@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:indonesia_flash_card/config/color_config.dart';
-import 'package:indonesia_flash_card/domain/tango_list_service.dart';
-import 'package:indonesia_flash_card/screen/flush_card_screen.dart';
-import 'package:indonesia_flash_card/utils/common_text_widget.dart';
+import 'package:bintango_jp/config/color_config.dart';
+import 'package:bintango_jp/domain/tango_list_service.dart';
+import 'package:bintango_jp/screen/flush_card_screen.dart';
+import 'package:bintango_jp/utils/common_text_widget.dart';
 
 import '../config/config.dart';
 import '../config/size_config.dart';

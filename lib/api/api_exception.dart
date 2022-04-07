@@ -1,4 +1,4 @@
-import 'package:indonesia_flash_card/api/api_error.dart';
+import 'package:bintango_jp/api/api_error.dart';
 import '../utils/user_friendly_exception.dart';
 
 // An exception thrown when an Api response isn't successful. Can include an ApiError and the status code of the response.

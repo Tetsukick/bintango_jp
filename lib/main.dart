@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:indonesia_flash_card/config/color_config.dart';
-import 'package:indonesia_flash_card/screen/home_navigation.dart';
-import 'package:indonesia_flash_card/screen/lesson_selector_screen.dart';
-import 'package:indonesia_flash_card/utils/analytics/firebase_analytics.dart';
-import 'package:indonesia_flash_card/utils/crash_reporter.dart';
-import 'package:indonesia_flash_card/utils/utils.dart';
+import 'package:bintango_jp/config/color_config.dart';
+import 'package:bintango_jp/screen/home_navigation.dart';
+import 'package:bintango_jp/screen/lesson_selector_screen.dart';
+import 'package:bintango_jp/utils/analytics/firebase_analytics.dart';
+import 'package:bintango_jp/utils/crash_reporter.dart';
+import 'package:bintango_jp/utils/utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {

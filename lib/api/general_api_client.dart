@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:indonesia_flash_card/api/api_client.dart';
+import 'package:bintango_jp/api/api_client.dart';
 import 'package:logger/logger.dart';
 
 abstract class GeneralApiClient extends ApiClient {

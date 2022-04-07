@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:indonesia_flash_card/config/color_config.dart';
-import 'package:indonesia_flash_card/config/size_config.dart';
+import 'package:bintango_jp/config/color_config.dart';
+import 'package:bintango_jp/config/size_config.dart';
 
 class TextWidget {
   static Widget titleRedMedium(String data, {int maxLines = 1}) {

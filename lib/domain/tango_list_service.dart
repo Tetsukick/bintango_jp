@@ -2,16 +2,16 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:collection/collection.dart';
-import 'package:indonesia_flash_card/config/config.dart';
-import 'package:indonesia_flash_card/model/floor_entity/word_status.dart';
-import 'package:indonesia_flash_card/model/lecture.dart';
-import 'package:indonesia_flash_card/model/tango_master.dart';
-import 'package:indonesia_flash_card/model/tango_entity.dart';
-import 'package:indonesia_flash_card/model/word_status_type.dart';
-import 'package:indonesia_flash_card/repository/sheat_repo.dart';
-import 'package:indonesia_flash_card/repository/translate_repo.dart';
-import 'package:indonesia_flash_card/utils/logger.dart';
-import 'package:indonesia_flash_card/utils/utils.dart';
+import 'package:bintango_jp/config/config.dart';
+import 'package:bintango_jp/model/floor_entity/word_status.dart';
+import 'package:bintango_jp/model/lecture.dart';
+import 'package:bintango_jp/model/tango_master.dart';
+import 'package:bintango_jp/model/tango_entity.dart';
+import 'package:bintango_jp/model/word_status_type.dart';
+import 'package:bintango_jp/repository/sheat_repo.dart';
+import 'package:bintango_jp/repository/translate_repo.dart';
+import 'package:bintango_jp/utils/logger.dart';
+import 'package:bintango_jp/utils/utils.dart';
 
 import '../model/category.dart';
 import '../model/floor_database/database.dart';

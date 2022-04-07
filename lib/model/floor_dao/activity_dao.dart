@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:indonesia_flash_card/model/floor_entity/activity.dart';
+import 'package:bintango_jp/model/floor_entity/activity.dart';
 
 @dao
 abstract class ActivityDao {
