@@ -51,7 +51,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
   int currentIndex = 0;
   bool cardFlipped = false;
   bool allCardsFinished = false;
-  final _cardHeight = 100.0;
+  final _cardHeight = 150.0;
   FlutterTts flutterTts = FlutterTts();
   bool _isSoundOn = false;
   final _iconHeight = 20.0;
@@ -122,7 +122,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextWidget.titleGraySmallBold('${currentIndex + 1} / ${questionAnswerList.lesson.tangos.length} 問目'),
+        TextWidget.titleGraySmallBold('${currentIndex + 1} / ${questionAnswerList.lesson.tangos.length}'),
         SizedBox(width: SizeConfig.smallMargin),
         Utils.soundSettingSwitch(value: _isSoundOn,
             onToggle: (val) {
@@ -147,22 +147,22 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
   Widget _flashCardFront() {
     final questionAnswerList = ref.watch(tangoListControllerProvider);
     if (questionAnswerList.lesson.tangos.isEmpty) {
-      return _shimmerFlashCard(isTappable: false, isJapanese: false);
+      return _shimmerFlashCard(isTappable: false, isJapanese: true);
     }
     if (_isSoundOn) {
       flutterTts.speak(questionAnswerList.lesson.tangos[currentIndex].japaneseKana ?? '');
     }
     return _flashCard(
-        title: 'bahasa jepang',
+        title: 'bahasa Jepang',
         tango: questionAnswerList.lesson.tangos[currentIndex]);
   }
 
   Widget _flashCardBack() {
     final questionAnswerList = ref.watch(tangoListControllerProvider);
     if (questionAnswerList.lesson.tangos.isEmpty) {
-      return _shimmerFlashCard(isTappable: false);
+      return _shimmerFlashCard(isTappable: false, isJapanese: false);
     } else if (!cardFlipped) {
-      return _shimmerFlashCard(isTappable: true);
+      return _shimmerFlashCard(isTappable: true, isJapanese: false);
     }
     final entity = questionAnswerList.lesson.tangos[currentIndex];
     return Card(
@@ -173,7 +173,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _japanese(entity),
+              _indonesia(entity),
               SizedBox(height: SizeConfig.smallMargin),
               _english(entity),
               SizedBox(height: SizeConfig.smallMargin),
@@ -197,7 +197,9 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextWidget.titleRedMedium(title),
-                  Flexible(child: TextWidget.titleBlackLargestBold(tango.indonesian!, maxLines: 2)),
+                  Flexible(child: TextWidget.titleBlackLargestBold(tango.japaneseKana!, maxLines: 2)),
+                  Flexible(child: TextWidget.titleBlackMediumBold(tango.romaji!, maxLines: 2)),
+                  Flexible(child: TextWidget.titleBlackMediumBold(tango.japanese!, maxLines: 2)),
                 ],
               ),
             ),
@@ -261,12 +263,12 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
     return wordStatus;
   }
 
-  Widget _japanese(TangoEntity entity) {
+  Widget _indonesia(TangoEntity entity) {
     return Row(
       children: [
-        Assets.png.japanFuji64.image(height: _iconHeight, width: _iconWidth),
+        Assets.png.indonesia64.image(height: _iconHeight, width: _iconWidth),
         SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleGrayLargeBold(entity.japanese!, maxLines: 2)),
+        Flexible(child: TextWidget.titleGrayLargeBold(entity.indonesian!, maxLines: 2)),
       ],
     );
   }
@@ -334,7 +336,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextWidget.titleRedMedium(isJapanese ? '日本語' : 'インドネシア語'),
+                  TextWidget.titleRedMedium(isJapanese ? 'bahasa Jepang' : 'bahasa Indonesia'),
                   ShimmerWidget.rectangular(height: 40, width: 240,)
                 ],
               ),
@@ -358,7 +360,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
                           height: _cardHeight / 3,
                         ),
                         SizedBox(height: SizeConfig.smallMargin,),
-                        TextWidget.titleGraySmallBold('タップして日本語の意味を表示')
+                        TextWidget.titleGraySmallBold('Menampilkan artinya')
                       ],
                     )
                 ),

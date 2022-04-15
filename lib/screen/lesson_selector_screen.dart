@@ -148,8 +148,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
                   _adWidget(),
                   _sectionTitle('カテゴリー別'),
                   _carouselCategoryLectures(),
-                  _sectionTitle('品詞別'),
-                  _carouselPartOfSpeechLectures(),
                 ],
               ),
             ),
@@ -445,14 +443,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
     );
   }
 
-  Widget _carouselPartOfSpeechLectures() {
-    return _carouselLectures(
-      items: _partOfSpeechWidgets(),
-      controller: _partOfSpeechCarouselController,
-      index: _currentPartOfSpeechIndex,
-    );
-  }
-
   Widget _carouselLectures({
     required List<Widget> items,
     required CarouselController controller,
@@ -513,14 +503,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
       _categories.add(_lectureCard(category: element));
     });
     return _categories;
-  }
-
-  List<Widget> _partOfSpeechWidgets() {
-    List<Widget> _partOfSpeechs = [];
-    PartOfSpeechEnum.values.forEach((element) {
-      _partOfSpeechs.add(_lectureCard(partOfSpeech: element));
-    });
-    return _partOfSpeechs;
   }
 
   Widget _lectureCard({TangoCategory? category, PartOfSpeechEnum? partOfSpeech, LevelGroup? levelGroup}) {
