@@ -56,7 +56,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
   }
 
   void setTTS() {
-    flutterTts.setLanguage('id-ID');
+    flutterTts.setLanguage('ja-JP');
   }
 
   void loadSoundSetting() async {
@@ -93,7 +93,6 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _topBarSection(),
-                        _partOfSpeech(),
                         SizedBox(height: SizeConfig.smallMargin),
                         _indonesian(),
                         SizedBox(height: SizeConfig.smallestMargin),
@@ -101,12 +100,6 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
                         _japanese(),
                         SizedBox(height: SizeConfig.smallMargin),
                         _english(),
-                        SizedBox(height: SizeConfig.smallMargin),
-                        _exampleHeader(),
-                        SizedBox(height: SizeConfig.smallMargin),
-                        _example(),
-                        SizedBox(height: SizeConfig.smallMargin),
-                        _exampleJp(),
                         SizedBox(height: SizeConfig.smallMargin),
                         _descriptionHeader(),
                         SizedBox(height: SizeConfig.smallMargin),
@@ -183,15 +176,6 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
     );
   }
 
-  Widget _partOfSpeech() {
-    return Row(
-      children: [
-        TextWidget.titleWhiteSmallBoldWithBackGround(PartOfSpeechExt.intToPartOfSpeech(value: this.widget.tangoEntity.partOfSpeech!).title),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-      ],
-    );
-  }
-
   Widget _indonesian() {
     return Row(
       children: [
@@ -242,26 +226,6 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
           Flexible(child: _separater())
         ],
       ),
-    );
-  }
-
-  Widget _example() {
-    return Row(
-      children: [
-        Assets.png.example64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.example!, maxLines: 5)),
-      ],
-    );
-  }
-
-  Widget _exampleJp() {
-    return Row(
-      children: [
-        Assets.png.japan64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleGrayMediumBold(this.widget.tangoEntity.exampleJp!, maxLines: 5)),
-      ],
     );
   }
 

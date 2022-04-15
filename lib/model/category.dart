@@ -41,7 +41,7 @@ extension TangoCategoryExt on TangoCategory {
       case TangoCategory.occupation:
         return 'Occupation';
       case TangoCategory.country:
-        return 'COuntry';
+        return 'Country';
       case TangoCategory.language:
         return 'Language';
       case TangoCategory.places:
@@ -57,7 +57,7 @@ extension TangoCategoryExt on TangoCategory {
       case TangoCategory.nature:
         return 'Nature';
       case TangoCategory.bodyParts:
-        return 'Boddy Parts';
+        return 'Body Parts';
       case TangoCategory.food:
         return 'Food';
       case TangoCategory.beverage:

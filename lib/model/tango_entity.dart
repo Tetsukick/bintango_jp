@@ -7,18 +7,22 @@ class TangoEntity {
 
 	int? id;
 	String? indonesian;
-	String? japanese;
 	String? english;
-	String? description;
-	String? example;
-	@JSONField(name: "example_jp")
-	String? exampleJp;
-	int? level;
-	@JSONField(name: "part_of_speech")
-	int? partOfSpeech;
+	String? japanese;
+	String? japaneseKana;
+	String? romaji;
+	String? option1;
+	String? option2;
+	String? option3;
 	int? category;
-	int? frequency;
-	int? rankFrequency;
+	int? level;
+	String? description;
+	String? option1Kana;
+	String? option1Romaji;
+	String? option2Kana;
+	String? option2Romaji;
+	String? option3Kana;
+	String? option3Romaji;
   
   TangoEntity();
 

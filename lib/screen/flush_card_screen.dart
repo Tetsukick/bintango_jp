@@ -68,7 +68,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
   }
   
   void setTTS() {
-    flutterTts.setLanguage('id-ID');
+    flutterTts.setLanguage('ja-JP');
   }
 
   void loadSoundSetting() async {
@@ -150,10 +150,10 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
       return _shimmerFlashCard(isTappable: false, isJapanese: false);
     }
     if (_isSoundOn) {
-      flutterTts.speak(questionAnswerList.lesson.tangos[currentIndex].indonesian ?? '');
+      flutterTts.speak(questionAnswerList.lesson.tangos[currentIndex].japaneseKana ?? '');
     }
     return _flashCard(
-        title: 'インドネシア語',
+        title: 'bahasa jepang',
         tango: questionAnswerList.lesson.tangos[currentIndex]);
   }
 
@@ -173,17 +173,9 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _partOfSpeech(entity),
-              SizedBox(height: SizeConfig.smallMargin),
               _japanese(entity),
               SizedBox(height: SizeConfig.smallMargin),
               _english(entity),
-              SizedBox(height: SizeConfig.smallMargin),
-              _exampleHeader(),
-              SizedBox(height: SizeConfig.smallMargin),
-              _example(entity),
-              SizedBox(height: SizeConfig.smallMargin),
-              _exampleJp(entity),
               SizedBox(height: SizeConfig.smallMargin),
             ],
           ),
@@ -269,15 +261,6 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
     return wordStatus;
   }
 
-  Widget _partOfSpeech(TangoEntity entity) {
-    return Row(
-      children: [
-        TextWidget.titleWhiteSmallBoldWithBackGround(PartOfSpeechExt.intToPartOfSpeech(value: entity.partOfSpeech!).title),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-      ],
-    );
-  }
-
   Widget _japanese(TangoEntity entity) {
     return Row(
       children: [
@@ -304,26 +287,6 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
         TextWidget.titleRedMedium('例文', maxLines: 1),
         SizedBox(width: SizeConfig.mediumSmallMargin),
         Flexible(child: _separater())
-      ],
-    );
-  }
-
-  Widget _example(TangoEntity entity) {
-    return Row(
-      children: [
-        Assets.png.example64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleBlackMediumBold(entity.example!, maxLines: 5)),
-      ],
-    );
-  }
-
-  Widget _exampleJp(TangoEntity entity) {
-    return Row(
-      children: [
-        Assets.png.japan64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleGrayMediumSmallBold(entity.exampleJp!, maxLines: 5)),
       ],
     );
   }
