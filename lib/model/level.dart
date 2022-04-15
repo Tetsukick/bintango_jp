@@ -21,7 +21,7 @@ extension LevelGroupExt on LevelGroup {
   String get title {
     switch (this) {
       case LevelGroup.n5:
-        return 'N%';
+        return 'N5';
       case LevelGroup.n4:
         return 'N4';
       case LevelGroup.n3:

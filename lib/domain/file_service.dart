@@ -20,7 +20,7 @@ class FileController extends StateNotifier<List<LectureFolder>> {
         .where((element) => element.mimeType?.contains("spreadsheet") ?? false)
         .toList();
 
-    List<LectureFolder> result = [LectureFolder('bahasa indonesia', [])];
+    List<LectureFolder> result = [LectureFolder('BINTANGO_PROD', [])];
 
     for (var spreadsheet in spreadsheets) {
       final lectureFolder = result[0];
