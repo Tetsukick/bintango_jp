@@ -8,11 +8,11 @@ extension FilterTypeExt on FilterType {
   String get title {
     switch (this) {
       case FilterType.wordStatus:
-        return '単語ステータス';
+        return 'status kata';
       case FilterType.levelGroup:
-        return 'レベル';
+        return 'level';
       case FilterType.category:
-        return 'カテゴリー';
+        return 'category';
     }
   }
 }

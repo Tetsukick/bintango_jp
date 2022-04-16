@@ -96,6 +96,9 @@ class $AssetsIconGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/Shiba-otukare.json
+  String get shibaOtukare => 'assets/lottie/Shiba-otukare.json';
+
   /// File path: assets/lottie/bicycle_indonesia.json
   String get bicycleIndonesia => 'assets/lottie/bicycle_indonesia.json';
 
@@ -113,6 +116,12 @@ class $AssetsLottieGen {
 
   /// File path: assets/lottie/cross_red.json
   String get crossRed => 'assets/lottie/cross_red.json';
+
+  /// File path: assets/lottie/japan-flow.json
+  String get japanFlow => 'assets/lottie/japan-flow.json';
+
+  /// File path: assets/lottie/japanese-noodles.json
+  String get japaneseNoodles => 'assets/lottie/japanese-noodles.json';
 
   /// File path: assets/lottie/kanpai.json
   String get kanpai => 'assets/lottie/kanpai.json';

@@ -123,9 +123,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                     children: [
                       wordStatus(tango),
                       SizedBox(height: SizeConfig.smallestMargin,),
-                      TextWidget.titleBlackMediumBold(tango.indonesian ?? ''),
+                      TextWidget.titleBlackMediumBold(tango.japaneseKana ?? ''),
                       SizedBox(height: 2,),
-                      TextWidget.titleGraySmall(tango.japanese ?? ''),
+                      TextWidget.titleGraySmall(tango.indonesian ?? ''),
                     ],
                   ),
                 ),
@@ -218,7 +218,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         children: [
           Assets.png.filter64.image(height: 20, width: 20),
           SizedBox(width: SizeConfig.mediumSmallMargin),
-          TextWidget.titleGraySmallBold('フィルタ'),
+          TextWidget.titleGraySmallBold('filter'),
         ],
       ),
     );
@@ -231,7 +231,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         children: [
           Assets.png.sort64.image(height: 20, width: 20),
           SizedBox(width: SizeConfig.mediumSmallMargin),
-          TextWidget.titleGraySmallBold('ソート'),
+          TextWidget.titleGraySmallBold('sort'),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:bintango_jp/config/color_config.dart';
 import 'package:bintango_jp/domain/tango_list_service.dart';
 import 'package:bintango_jp/screen/flush_card_screen.dart';
 import 'package:bintango_jp/utils/common_text_widget.dart';
+import 'package:lottie/lottie.dart';
 
 import '../config/config.dart';
 import '../config/size_config.dart';
@@ -68,16 +69,19 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.gif.birBintangKanpai.image(height: 150),
+            Lottie.asset(
+              Assets.lottie.shibaOtukare,
+              height: 150
+            ),
             const SizedBox(height: SizeConfig.mediumSmallMargin),
-            TextWidget.titleGraySmallBold('おつかれさまでした!'),
+            TextWidget.titleGraySmallBold('Otsukare!'),
             const SizedBox(height: SizeConfig.smallMargin),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextWidget.titleGrayLargeBold('総合スコア: '),
+                TextWidget.titleGrayLargeBold('score total: '),
                 TextWidget.titleRedLargestBold(calculateTotalScore(tangoList.lesson.quizResults)),
-                TextWidget.titleGrayLargeBold(' 点'),
+                TextWidget.titleGrayLargeBold(' poin'),
               ]
             ),
             const SizedBox(height: SizeConfig.smallMargin),
@@ -102,7 +106,7 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                       FlashCardScreen.navigateReplacementTo(context);
                     },
                     img: Assets.png.continue128,
-                    title: '同設定で継続'
+                    title: 'lanjut belajar'
                 ),
                 const SizedBox(width: SizeConfig.smallMargin),
                 _button(
@@ -111,7 +115,7 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     img: Assets.png.home128,
-                    title: 'トップに戻る'
+                    title: 'balik ke home'
                 ),
               ],
             ),

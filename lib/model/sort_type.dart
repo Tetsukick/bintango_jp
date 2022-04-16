@@ -9,13 +9,13 @@ extension SortTypeExt on SortType {
   String get title {
     switch (this) {
       case SortType.indonesian:
-        return 'A→Z 昇順';
+        return 'A→Z urutan naik';
       case SortType.indonesianReverse:
-        return 'Z→A 降順';
+        return 'Z→A urutan menurun';
       case SortType.level:
-        return 'レベル昇順';
+        return 'level urutan naik';
       case SortType.levelReverse:
-        return 'レベル降順';
+        return 'level urutan menurun';
     }
   }
 }
