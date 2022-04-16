@@ -60,18 +60,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   AppDatabase? database;
   StreamController<ErrorAnimationType>? errorController;
   String currentText = '';
-  PinCodeTextField? pinCodeTextField;
   CountdownTimerController? countDownController;
-  final baseQuestionTime = 1000 * 15;
+  final baseQuestionTime = 1000 * 10;
   late int endTime = DateTime.now().millisecondsSinceEpoch + baseQuestionTime;
-  final questionExplanation = '日本語に適するインドネシア語を入力してください';
+  final questionExplanation = 'Silakan pilih arti yang paling benar';
 
   @override
   void initState() {
     FirebaseAnalyticsUtils.analytics.setCurrentScreen(screenName: AnalyticsScreen.quiz.name);
     initializeDB();
     super.initState();
-    initializePinCodeTextField();
   }
 
   void initializeDB() async {
@@ -80,13 +78,6 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         .addMigrations([migration1to2])
         .build();
     setState(() => database = _database);
-  }
-
-  void initializePinCodeTextField() async {
-    await Future<void>.delayed(Duration(milliseconds: 500));
-    final questionAnswerList = ref.watch(tangoListControllerProvider);
-    final entity = questionAnswerList.lesson.tangos[currentIndex];
-    setPinCodeTextField(entity);
   }
 
   @override
@@ -130,12 +121,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       children: [
         TextWidget.titleGraySmallBold('${currentIndex + 1} / ${questionAnswerList.lesson.tangos.length} 問目'),
         SizedBox(width: SizeConfig.smallMargin),
-        Visibility(
-          visible: pinCodeTextField != null,
-          child: CountdownTimer(
-            controller: countDownController,
-            endTime: endTime,
-          ),
+        CountdownTimer(
+          controller: countDownController,
+          endTime: endTime,
         ),
         Spacer(),
         IconButton(
@@ -157,27 +145,60 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       return _shimmerFlashCard();
     }
     return _flashCard(
-        title: '日本語',
+        title: 'bahasa Indonesia',
         tango: questionAnswerList.lesson.tangos[currentIndex]);
   }
 
   Widget _questionAnswerCard() {
     final questionAnswerList = ref.watch(tangoListControllerProvider);
     final entity = questionAnswerList.lesson.tangos[currentIndex];
+    List<QuizOptionEntity> optionList = [];
+    optionList.add(QuizOptionEntity()
+      ..kana = entity.japaneseKana!
+      ..romaji = entity.romaji!
+    );
+    optionList.add(QuizOptionEntity()
+      ..kana = entity.option1Kana!
+      ..romaji = entity.option1Romaji!
+    );
+    optionList.add(QuizOptionEntity()
+      ..kana = entity.option2Kana!
+      ..romaji = entity.option2Romaji!
+    );
+    optionList.add(QuizOptionEntity()
+      ..kana = entity.option3Kana!
+      ..romaji = entity.option3Romaji!
+    );
+    optionList.shuffle();
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: optionList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _optionAnswerCard(optionEntity: optionList[index]);
+      },
+    );
+  }
+
+  Widget _optionAnswerCard({required QuizOptionEntity optionEntity}) {
+    final questionAnswerList = ref.watch(tangoListControllerProvider);
+    final entity = questionAnswerList.lesson.tangos[currentIndex];
     return Card(
-      child: Container(
-        padding: const EdgeInsets.all(SizeConfig.mediumSmallMargin),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextWidget.titleGrayMediumBold(questionExplanation, maxLines: 2),
-            SizedBox(height: SizeConfig.smallestMargin),
-            TextWidget.titleGraySmallest('ヒント (${entity.indonesian?.split(' ').length}語)', maxLines: 2),
-            TextWidget.titleGraySmallest(hintText(entity.indonesian!), maxLines: 2),
-            _separater(),
-            if (pinCodeTextField != null) pinCodeTextField!,
-          ],
+      child: InkWell(
+        onTap: () {
+          _answer(optionEntity.kana, entity: entity);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(SizeConfig.mediumSmallMargin),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextWidget.titleBlackLargeBold(optionEntity.kana, maxLines: 2),
+              SizedBox(height: SizeConfig.smallestMargin),
+              TextWidget.titleBlackMediumBold(optionEntity.romaji, maxLines: 2),
+            ],
+          ),
         ),
       ),
     );
@@ -186,7 +207,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   Future<void> _answer(String input, {required TangoEntity entity}) async {
     final questionAnswerList = ref.watch(tangoListControllerProvider);
     final entity = questionAnswerList.lesson.tangos[currentIndex];
-    if (entity.indonesian!.toLowerCase() == input.toLowerCase()) {
+    if (entity.japaneseKana == input) {
       final remainTime = endTime - DateTime.now().millisecondsSinceEpoch;
       await registerWordStatus(isCorrect: true);
       await registerActivity();
@@ -198,7 +219,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       showTrueFalseDialog(true, entity: entity, remainTime: remainTime);
       getNextCard();
     } else {
-      errorController?.add(ErrorAnimationType.shake);
+      wrongAnswerAction(entity);
     }
   }
 
@@ -213,21 +234,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               TextWidget.titleRedMedium(title),
               Flexible(
                 child: TextWidget.titleBlackLargestBold(
-                  isFront ? tango.japanese! : tango.indonesian!, maxLines: 2)
+                  isFront ? tango.indonesian! : tango.japanese!, maxLines: 2)
               ),
             ],
           )
-      ),
-    );
-  }
-
-  Widget _separater() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: SizeConfig.mediumMargin),
-      child: Container(
-        height: 1,
-        width: double.infinity,
-        color: ColorConfig.bgGreySeparater,
       ),
     );
   }
@@ -243,7 +253,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextWidget.titleRedMedium(isJapanese ? '日本語' : 'インドネシア語'),
+                  TextWidget.titleRedMedium(isJapanese ? 'bahasa Jepang' : 'bahasa Indonesia'),
                   ShimmerWidget.rectangular(height: 40, width: 240,)
                 ],
               ),
@@ -323,7 +333,6 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   void setPinCodeTextField(TangoEntity entity) async {
     countDownController?.disposeTimer();
     setState(() {
-      pinCodeTextField = null;
       errorController?.close();
       errorController = null;
       countDownController = null;
@@ -332,73 +341,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     await Future<void>.delayed(Duration(milliseconds: 1200));
 
     setCountDownController(entity);
-    final pinHeight = getPinHeight(entity.indonesian?.length ?? 0);
-    final pinWidth = getPinWidth(entity.indonesian?.length ?? 0);
-    final fontSize = getFontSize(entity.indonesian?.length ?? 0);
     setState(() {
       errorController = StreamController<ErrorAnimationType>();
-      pinCodeTextField = PinCodeTextField(
-        length: entity.indonesian?.length ?? 0,
-        obscureText: false,
-        animationType: AnimationType.fade,
-        autoFocus: true,
-        pinTheme: PinTheme(
-          shape: PinCodeFieldShape.box,
-          borderRadius: BorderRadius.circular(5),
-          fieldHeight: pinHeight,
-          fieldWidth: pinWidth,
-          activeFillColor: Colors.white,
-          activeColor: ColorConfig.green,
-          inactiveColor: ColorConfig.green,
-          inactiveFillColor: Colors.white,
-          selectedColor: ColorConfig.primaryRed900,
-          selectedFillColor: Colors.white,
-        ),
-        textStyle: TextStyle(fontSize: fontSize),
-        animationDuration: Duration(milliseconds: 300),
-        enableActiveFill: true,
-        errorAnimationController: errorController,
-        controller: TextEditingController(),
-        onCompleted: (v) {
-          logger.d(v);
-          _answer(v, entity: entity);
-        },
-        onChanged: (value) {
-          setState(() {
-            currentText = value;
-          });
-        },
-        appContext: context,
-      );
     });
-  }
-  
-  double getPinHeight(int length) {
-    if (length < 8) {
-      return 40.0;
-    } else if (length < 10) {
-      return 36.0;
-    } else if (length < 12) {
-      return 32.0;
-    } else if (length < 16) {
-      return 28.0;
-    } else {
-      return 24.0;
-    }
-  }
-
-  double getPinWidth(int length) {
-    if (length < 8) {
-      return 30.0;
-    } else if (length < 10) {
-      return 26.0;
-    } else if (length < 12) {
-      return 22.0;
-    } else if (length < 16) {
-      return 18.0;
-    } else {
-      return 15.0;
-    }
   }
 
   double getFontSize(int length) {
@@ -470,28 +415,25 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final questionAnswerList = ref.watch(tangoListControllerProvider);
     final entity = questionAnswerList.lesson.tangos[currentIndex];
 
-    return Visibility(
-      visible: pinCodeTextField != null,
-      child: Card(
-        shape: CircleBorder(),
-        child: InkWell(
-          child: Container(
-              height: 120,
-              width: 120,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  type.iconLarge,
-                  SizedBox(height: SizeConfig.smallMargin),
-                  TextWidget.titleGraySmallBold('パス'),
-                ],
-              )
-          ),
-          onTap: () async {
-            countDownController?.disposeTimer();
-            await wrongAnswerAction(entity);
-          },
+    return Card(
+      shape: CircleBorder(),
+      child: InkWell(
+        child: Container(
+            height: 120,
+            width: 120,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                type.iconLarge,
+                SizedBox(height: SizeConfig.smallMargin),
+                TextWidget.titleGraySmallBold('パス'),
+              ],
+            )
         ),
+        onTap: () async {
+          countDownController?.disposeTimer();
+          await wrongAnswerAction(entity);
+        },
       ),
     );
   }
@@ -510,4 +452,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   String hintText(String value) {
     return value.replaceAll(RegExp(r'[a-zA-Z]'), '*');
   }
+}
+
+class QuizOptionEntity {
+  String kana = '';
+  String romaji = '';
 }

@@ -51,6 +51,7 @@ class TangoListController extends StateNotifier<TangoMaster> {
 
     for (var element in entryList) {
       if (element.isEmpty) continue;
+      if (element.length <= 16) continue;
       if (element[1].toString().trim() == ''
           || element[2].toString().trim() == '') {
         continue;

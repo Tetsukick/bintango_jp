@@ -16,13 +16,13 @@ extension WordStatusTypeExt on WordStatusType {
   String get title {
     switch (this) {
       case WordStatusType.notLearned:
-        return '未学習';
+        return 'belum belajar';
       case WordStatusType.notRemembered:
-        return '未暗記';
+        return 'belum ingat';
       case WordStatusType.remembered:
-        return 'ほぼ暗記';
+        return 'hampir ingat';
       case WordStatusType.perfectRemembered:
-        return '完全暗記';
+        return 'ingat';
     }
   }
 
@@ -31,11 +31,11 @@ extension WordStatusTypeExt on WordStatusType {
       case WordStatusType.notLearned:
         return '';
       case WordStatusType.notRemembered:
-        return '知らない';
+        return 'tidak tahu';
       case WordStatusType.remembered:
-        return '確認済み';
+        return 'sudah cek';
       case WordStatusType.perfectRemembered:
-        return '完全暗記';
+        return 'ingat';
     }
   }
 
