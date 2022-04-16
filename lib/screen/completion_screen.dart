@@ -4,6 +4,7 @@ import 'package:bintango_jp/config/color_config.dart';
 import 'package:bintango_jp/domain/tango_list_service.dart';
 import 'package:bintango_jp/screen/flush_card_screen.dart';
 import 'package:bintango_jp/utils/common_text_widget.dart';
+import 'package:lottie/lottie.dart';
 
 import '../config/config.dart';
 import '../config/size_config.dart';
@@ -68,7 +69,10 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.gif.birBintangKanpai.image(height: 150),
+            Lottie.asset(
+              Assets.lottie.shibaOtukare,
+              height: 150
+            ),
             const SizedBox(height: SizeConfig.mediumSmallMargin),
             TextWidget.titleGraySmallBold('Otsukare!'),
             const SizedBox(height: SizeConfig.smallMargin),

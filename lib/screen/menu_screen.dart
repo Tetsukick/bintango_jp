@@ -48,7 +48,7 @@ class _MenuScreenState extends ConsumerState<MenuScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.asset(
-              Assets.lottie.bicycleIndonesia,
+              Assets.lottie.japanFlow,
               height: _menuItemBarHeight * 3,
             ),
             ListView.builder(
@@ -172,7 +172,6 @@ class _MenuScreenState extends ConsumerState<MenuScreen> {
 
 enum MenuItem {
   settingSound,
-  addNewTango,
   privacyPolicy,
   feedback,
   developerInfo,
@@ -183,24 +182,20 @@ extension MenuItemExt on MenuItem {
   String get title {
     switch (this) {
       case MenuItem.settingSound:
-        return '音声の読み上げ';
-      case MenuItem.addNewTango:
-        return '新規単語の追加';
+        return 'Setting suara';
       case MenuItem.privacyPolicy:
-        return 'プライバシーポリシー';
+        return 'Privacy policy';
       case MenuItem.feedback:
-        return 'フィードバック';
+        return 'Feedback';
       case MenuItem.developerInfo:
-        return '開発者情報';
+        return 'Developer info';
       case MenuItem.licence:
-        return 'ライセンス';
+        return 'License';
     }
   }
 
   String get url {
     switch (this) {
-      case MenuItem.addNewTango:
-        return 'https://docs.google.com/forms/d/e/1FAIpQLSezIwLEoiKf_sQU99ioxjKCOhXI6o_ZVDulwwuTug2rRSxmew/viewform';
       case MenuItem.privacyPolicy:
         return 'https://qiita.com/tetsukick/items/a3c844940064e15f0dac';
       case MenuItem.feedback:
@@ -218,8 +213,6 @@ extension MenuItemExt on MenuItem {
     switch (this) {
       case MenuItem.settingSound:
         return Assets.png.soundOn64.image(height: _height, width: _width);
-      case MenuItem.addNewTango:
-        return Assets.png.addDocument128.image(height: _height, width: _width);
       case MenuItem.privacyPolicy:
         return Assets.png.privacypolicy128.image(height: _height, width: _width);
       case MenuItem.feedback:
@@ -235,8 +228,6 @@ extension MenuItemExt on MenuItem {
     switch (this) {
       case MenuItem.settingSound:
         return MenuAnalyticsItem.soundSetting;
-      case MenuItem.addNewTango:
-        return MenuAnalyticsItem.addTango;
       case MenuItem.privacyPolicy:
         return MenuAnalyticsItem.privacyPolicy;
       case MenuItem.feedback:
