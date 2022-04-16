@@ -70,14 +70,14 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
           children: [
             Assets.gif.birBintangKanpai.image(height: 150),
             const SizedBox(height: SizeConfig.mediumSmallMargin),
-            TextWidget.titleGraySmallBold('おつかれさまでした!'),
+            TextWidget.titleGraySmallBold('Otsukare!'),
             const SizedBox(height: SizeConfig.smallMargin),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextWidget.titleGrayLargeBold('総合スコア: '),
+                TextWidget.titleGrayLargeBold('score total: '),
                 TextWidget.titleRedLargestBold(calculateTotalScore(tangoList.lesson.quizResults)),
-                TextWidget.titleGrayLargeBold(' 点'),
+                TextWidget.titleGrayLargeBold(' poin'),
               ]
             ),
             const SizedBox(height: SizeConfig.smallMargin),
@@ -102,7 +102,7 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                       FlashCardScreen.navigateReplacementTo(context);
                     },
                     img: Assets.png.continue128,
-                    title: '同設定で継続'
+                    title: 'lanjut belajar'
                 ),
                 const SizedBox(width: SizeConfig.smallMargin),
                 _button(
@@ -111,7 +111,7 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     img: Assets.png.home128,
-                    title: 'トップに戻る'
+                    title: 'balik ke home'
                 ),
               ],
             ),

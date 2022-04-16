@@ -140,13 +140,12 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _userSection(),
-                  _todayTangTest(),
                   _bookMarkLecture(),
                   _notRememberTangoLecture(),
-                  _sectionTitle('レベル別'),
+                  _sectionTitle('Level'),
                   _carouselLevelLectures(),
                   _adWidget(),
-                  _sectionTitle('カテゴリー別'),
+                  _sectionTitle('Category'),
                   _carouselCategoryLectures(),
                 ],
               ),
@@ -178,27 +177,20 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _userSection() {
-    final tangoMaster = ref.watch(tangoListControllerProvider);
     return Card(
         child: Container(
-            height: 90,
+            height: 108,
             width: double.infinity,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _userSectionItem(
-                  title: '総単語数',
-                  data: tangoMaster.dictionary.allTangos.length,
-                  unitTitle: '単語'
-                ),
-                _separater(),
-                _userSectionItemTangoStatus(title: '覚えた単語数'),
+                _userSectionItemTangoStatus(title: 'Jumlah kata diingat'),
                 _separater(),
                 _userSectionItem(
-                  title: '累計学習日数',
+                  title: 'Jumlah hari belajar',
                   data: activityList.map((e) => e.date).toList().toSet().toList().length,
-                  unitTitle: '日'
+                  unitTitle: 'hari'
                 ),
               ],
             )
@@ -286,7 +278,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: SizeConfig.mediumSmallMargin),
                           child: Assets.png.bookmarkOn64.image(height: 20, width: 20),
                         ),
-                        TextWidget.titleGraySmallBold('ブックマークの復習 ${bookmarkList.length}語'),
+                        TextWidget.titleGraySmallBold('Kata Bookmark ${bookmarkList.length} kata'),
                       ],
                     ),
                     Padding(
@@ -324,7 +316,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: SizeConfig.mediumSmallMargin),
                           child: Assets.png.cancelRed128.image(height: 20, width: 20),
                         ),
-                        TextWidget.titleGraySmallBold('未暗記・誤答の復習 ${wordStatusList.where((element) => element.status == WordStatusType.notRemembered.id).length}語'),
+                        TextWidget.titleGraySmallBold('Kata belum ingat ${wordStatusList.where((element) => element.status == WordStatusType.notRemembered.id).length} kata'),
                       ],
                     ),
                     Padding(
@@ -364,12 +356,23 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _userSectionItemTangoStatus({required String title}) {
+    final tangoMaster = ref.watch(tangoListControllerProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.all(SizeConfig.smallMargin),
           child: TextWidget.titleRedMedium(title),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextWidget.titleGraySmallest('kata total'),
+            SizedBox(width: SizeConfig.smallestMargin),
+            TextWidget.titleBlackMediumBold(
+                tangoMaster.dictionary.allTangos.length.toString()),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
