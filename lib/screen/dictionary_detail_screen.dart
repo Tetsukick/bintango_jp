@@ -94,10 +94,10 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
                       children: [
                         _topBarSection(),
                         SizedBox(height: SizeConfig.smallMargin),
-                        _indonesian(),
+                        _japanese(),
                         SizedBox(height: SizeConfig.smallestMargin),
                         _separater(),
-                        _japanese(),
+                        _indonesian(),
                         SizedBox(height: SizeConfig.smallMargin),
                         _english(),
                         SizedBox(height: SizeConfig.smallMargin),
@@ -181,17 +181,23 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
       children: [
         Assets.png.indonesia64.image(height: _iconHeight, width: _iconWidth),
         SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleBlackLargestBold(this.widget.tangoEntity.indonesian!, maxLines: 2)),
+        Flexible(child: TextWidget.titleGrayLargeBold(this.widget.tangoEntity.indonesian!, maxLines: 2)),
       ],
     );
   }
 
   Widget _japanese() {
-    return Row(
+    return Column(
       children: [
-        Assets.png.japanFuji64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleGrayLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2)),
+        Row(
+          children: [
+            Assets.png.japanFuji64.image(height: _iconHeight, width: _iconWidth),
+            SizedBox(width: SizeConfig.mediumSmallMargin),
+            Flexible(child: TextWidget.titleBlackLargestBold(this.widget.tangoEntity.japaneseKana!, maxLines: 2)),
+          ],
+        ),
+        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.romaji!, maxLines: 2)),
+        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2)),
       ],
     );
   }
