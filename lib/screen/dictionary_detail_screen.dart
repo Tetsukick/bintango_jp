@@ -63,7 +63,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
     _isSoundOn = await PreferenceKey.isSoundOn.getBool();
     setState(() {});
     if (_isSoundOn) {
-      flutterTts.speak(this.widget.tangoEntity.indonesian ?? '');
+      flutterTts.speak(this.widget.tangoEntity.japanese ?? '');
     }
   }
 
@@ -162,7 +162,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _soundButton(this.widget.tangoEntity.indonesian!),
+        _soundButton(this.widget.tangoEntity.japanese!),
         IconButton(
             onPressed: () {
               analytics(DictionaryDetailItem.close);
