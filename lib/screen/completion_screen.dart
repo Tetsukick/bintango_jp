@@ -73,8 +73,6 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
               Assets.lottie.shibaOtukare,
               height: 150
             ),
-            const SizedBox(height: SizeConfig.mediumSmallMargin),
-            TextWidget.titleGraySmallBold('Otsukare!'),
             const SizedBox(height: SizeConfig.smallMargin),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +113,7 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     img: Assets.png.home128,
-                    title: 'balik ke home'
+                    title: 'balik home'
                 ),
               ],
             ),
@@ -146,9 +144,9 @@ class _CompletionScreenState extends ConsumerState<CompletionScreen> {
                     children: [
                       wordStatus(tango),
                       SizedBox(height: SizeConfig.smallestMargin,),
-                      TextWidget.titleBlackMediumBold(tango.indonesian ?? ''),
+                      TextWidget.titleBlackMediumBold(tango.japaneseKana ?? ''),
                       SizedBox(height: 2,),
-                      TextWidget.titleGraySmall(tango.japanese ?? ''),
+                      TextWidget.titleGraySmall(tango.indonesian ?? ''),
                     ],
                   ),
                 ),
