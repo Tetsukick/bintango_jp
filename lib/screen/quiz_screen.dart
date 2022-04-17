@@ -16,11 +16,9 @@ import 'package:bintango_jp/model/word_status_type.dart';
 import 'package:bintango_jp/screen/completion_screen.dart';
 import 'package:bintango_jp/screen/completion_today_test_screen.dart';
 import 'package:bintango_jp/utils/common_text_widget.dart';
-import 'package:bintango_jp/utils/logger.dart';
 import 'package:bintango_jp/utils/shimmer.dart';
 import 'package:bintango_jp/utils/utils.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../config/config.dart';
 import '../model/floor_database/database.dart';
@@ -58,12 +56,12 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   bool allCardsFinished = false;
   final _cardHeight = 100.0;
   AppDatabase? database;
-  StreamController<ErrorAnimationType>? errorController;
   String currentText = '';
   CountdownTimerController? countDownController;
   final baseQuestionTime = 1000 * 10;
   late int endTime = DateTime.now().millisecondsSinceEpoch + baseQuestionTime;
   final questionExplanation = 'Silakan pilih arti yang paling benar';
+  bool _visibleOptions = true;
 
   @override
   void initState() {
@@ -82,7 +80,6 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   @override
   void dispose() {
-    errorController?.close();
     countDownController?.dispose();
     super.dispose();
   }
@@ -170,13 +167,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       ..romaji = entity.option3Romaji!
     );
     optionList.shuffle();
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: optionList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _optionAnswerCard(optionEntity: optionList[index]);
-      },
+    return Visibility(
+      visible: _visibleOptions,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: optionList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _optionAnswerCard(optionEntity: optionList[index]);
+        },
+      ),
     );
   }
 
@@ -333,17 +333,14 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   void setPinCodeTextField(TangoEntity entity) async {
     countDownController?.disposeTimer();
     setState(() {
-      errorController?.close();
-      errorController = null;
+      _visibleOptions = false;
       countDownController = null;
     });
 
     await Future<void>.delayed(Duration(milliseconds: 1200));
 
+    setState(() => _visibleOptions = true);
     setCountDownController(entity);
-    setState(() {
-      errorController = StreamController<ErrorAnimationType>();
-    });
   }
 
   double getFontSize(int length) {
@@ -362,7 +359,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   void setCountDownController(TangoEntity entity) {
     setState(() {
-      endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 15 + 500;
+      endTime = DateTime.now().millisecondsSinceEpoch + baseQuestionTime + 500;
       countDownController = CountdownTimerController(
         endTime: endTime,
         onEnd: () async {
@@ -391,7 +388,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   visible: remainTime != null,
                     child: Padding(
                       padding: const EdgeInsets.all(SizeConfig.mediumSmallMargin),
-                      child: TextWidget.titleWhiteLargeBold('回答時間: ${(baseQuestionTime - (remainTime ?? 0)).toString()} ms'),
+                      child: TextWidget.titleWhiteLargeBold('${(baseQuestionTime - (remainTime ?? 0)).toString()} ms'),
                     ),
                 ),
                 Visibility(

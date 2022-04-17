@@ -63,7 +63,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
     _isSoundOn = await PreferenceKey.isSoundOn.getBool();
     setState(() {});
     if (_isSoundOn) {
-      flutterTts.speak(this.widget.tangoEntity.indonesian ?? '');
+      flutterTts.speak(this.widget.tangoEntity.japanese ?? '');
     }
   }
 
@@ -94,10 +94,10 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
                       children: [
                         _topBarSection(),
                         SizedBox(height: SizeConfig.smallMargin),
-                        _indonesian(),
+                        _japanese(),
                         SizedBox(height: SizeConfig.smallestMargin),
                         _separater(),
-                        _japanese(),
+                        _indonesian(),
                         SizedBox(height: SizeConfig.smallMargin),
                         _english(),
                         SizedBox(height: SizeConfig.smallMargin),
@@ -162,7 +162,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _soundButton(this.widget.tangoEntity.indonesian!),
+        _soundButton(this.widget.tangoEntity.japanese!),
         IconButton(
             onPressed: () {
               analytics(DictionaryDetailItem.close);
@@ -181,17 +181,23 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
       children: [
         Assets.png.indonesia64.image(height: _iconHeight, width: _iconWidth),
         SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleBlackLargestBold(this.widget.tangoEntity.indonesian!, maxLines: 2)),
+        Flexible(child: TextWidget.titleGrayLargeBold(this.widget.tangoEntity.indonesian!, maxLines: 2)),
       ],
     );
   }
 
   Widget _japanese() {
-    return Row(
+    return Column(
       children: [
-        Assets.png.japanFuji64.image(height: _iconHeight, width: _iconWidth),
-        SizedBox(width: SizeConfig.mediumSmallMargin),
-        Flexible(child: TextWidget.titleGrayLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2)),
+        Row(
+          children: [
+            Assets.png.japanFuji64.image(height: _iconHeight, width: _iconWidth),
+            SizedBox(width: SizeConfig.mediumSmallMargin),
+            Flexible(child: TextWidget.titleBlackLargestBold(this.widget.tangoEntity.japaneseKana!, maxLines: 2)),
+          ],
+        ),
+        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.romaji!, maxLines: 2)),
+        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2)),
       ],
     );
   }

@@ -150,7 +150,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
       return _shimmerFlashCard(isTappable: false, isJapanese: true);
     }
     if (_isSoundOn) {
-      flutterTts.speak(questionAnswerList.lesson.tangos[currentIndex].japaneseKana ?? '');
+      flutterTts.speak(questionAnswerList.lesson.tangos[currentIndex].japanese ?? '');
     }
     return _flashCard(
         title: 'bahasa Jepang',
@@ -207,7 +207,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
               visible: isFront,
               child: Align(
                 alignment: Alignment.topRight,
-                child: _soundButton(tango.indonesian!),
+                child: _soundButton(tango.japanese!),
               ),
             ),
             Align(
