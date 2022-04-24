@@ -8,6 +8,7 @@ import 'package:bintango_jp/gen/assets.gen.dart';
 import 'package:bintango_jp/utils/common_text_widget.dart';
 import 'package:bintango_jp/utils/shared_preference.dart';
 import 'package:bintango_jp/utils/utils.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:lottie/lottie.dart';
 import 'package:package_info/package_info.dart';
 
@@ -115,7 +116,12 @@ class _MenuScreenState extends ConsumerState<MenuScreen> {
               applicationIcon: Assets.icon.appIcon.image(),
               applicationLegalese: "BINTANGOアプリのライセンス情報",
             );
-          } else {
+          } else if (menuItem == MenuItem.feedback) {
+            final inAppReview = InAppReview.instance;
+            if (await inAppReview.isAvailable()) {
+              await inAppReview.requestReview();
+            }
+          }  else {
             setBrowserPage(menuItem.url);
           }
         },
