@@ -178,6 +178,10 @@ class $AssetsPngGen {
   AssetGenImage get checkedGreen512 =>
       const AssetGenImage('assets/png/checked_green_512.png');
 
+  /// File path: assets/png/coming-soon.png
+  AssetGenImage get comingSoon =>
+      const AssetGenImage('assets/png/coming-soon.png');
+
   /// File path: assets/png/continue_128.png
   AssetGenImage get continue128 =>
       const AssetGenImage('assets/png/continue_128.png');

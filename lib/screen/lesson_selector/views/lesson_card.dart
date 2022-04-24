@@ -55,29 +55,34 @@ class _LessonCardState extends ConsumerState<LessonCard> {
       getAchievementRate();
     }
 
-    return _lectureCard(
-        category: this.widget.category,
-        partOfSpeech: this.widget.partOfSpeech,
-        levelGroup: this.widget.levelGroup,
-        frequencyGroup: this.widget.frequencyGroup
+    return Stack(
+      children: [
+        _lectureCard(
+            category: this.widget.category,
+            levelGroup: this.widget.levelGroup,
+        ),
+        Visibility(
+          visible: achievementRate.isNaN,
+          child: Container(
+            color: Colors.black.withOpacity(0.01),
+            child: Center(
+              child: Assets.png.comingSoon.image(width: 48),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-  Widget _lectureCard({TangoCategory? category, PartOfSpeechEnum? partOfSpeech, LevelGroup? levelGroup, FrequencyGroup? frequencyGroup}) {
+  Widget _lectureCard({TangoCategory? category, LevelGroup? levelGroup}) {
     String _title = '';
     SvgGenImage _svg = Assets.svg.islam1;
     if (category != null) {
       _title = category.title;
       _svg = category.svg;
-    } else if (partOfSpeech != null) {
-      _title = partOfSpeech.title;
-      _svg = partOfSpeech.svg;
     } else if (levelGroup != null) {
       _title = levelGroup.title;
       _svg = levelGroup.svg;
-    } else if (frequencyGroup != null) {
-      _title = frequencyGroup.title;
-      _svg = frequencyGroup.svg;
     }
 
     final lectures = ref.watch(fileControllerProvider);
@@ -96,12 +101,11 @@ class _LessonCardState extends ConsumerState<LessonCard> {
           }
 
           analytics(LectureSelectorItem.lessonCard,
-              others: 'category: ${category?.id}, partOfSpeech: ${partOfSpeech?.id}, levelGroup: ${levelGroup?.index}, frequencyGroup: ${frequencyGroup?.index}');
+              others: 'category: ${category?.id}, levelGroup: ${levelGroup?.index}');
 
           ref.read(tangoListControllerProvider.notifier)
               .setLessonsData(
                 category: category,
-                partOfSpeech: partOfSpeech,
                 levelGroup: levelGroup,
               );
           FlashCardScreen.navigateTo(context);
