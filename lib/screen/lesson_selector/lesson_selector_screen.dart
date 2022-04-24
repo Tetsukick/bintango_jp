@@ -29,6 +29,7 @@ import 'package:bintango_jp/utils/shared_preference.dart';
 import 'package:bintango_jp/utils/shimmer.dart';
 import 'package:bintango_jp/utils/utils.dart';
 import 'package:lottie/lottie.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../config/config.dart';
@@ -69,6 +70,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   final RefreshController _refreshController =
     RefreshController(initialRefresh: false);
   bool _isAlreadyTestedToday = false;
+  bool _isLoadTangoList = false;
 
   @override
   void initState() {
@@ -96,6 +98,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   Future<void> initTangoList() async {
     final lectures = await ref.read(fileControllerProvider.notifier).getPossibleLectures();
     await ref.read(tangoListControllerProvider.notifier).getAllTangoList(folder: lectures.first);
+    setState(() => _isLoadTangoList = true);
   }
 
   void initFCM() async {
@@ -154,7 +157,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
           ),
         ),
         Visibility(
-          visible: tangoMaster.dictionary.allTangos.isEmpty,
+          visible: !_isLoadTangoList,
           child: Container(
             color: Colors.black.withOpacity(0.2),
             child: Center(
@@ -178,20 +181,38 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _userSection() {
+    final tangoMaster = ref.watch(tangoListControllerProvider);
     return Card(
         child: Container(
-            height: 108,
+            height: 138,
             width: double.infinity,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Column(
               children: [
-                _userSectionItemTangoStatus(title: 'Jumlah kata diingat'),
-                _separater(),
-                _userSectionItem(
-                  title: 'Jumlah hari belajar',
-                  data: activityList.map((e) => e.date).toList().toSet().toList().length,
-                  unitTitle: 'hari'
+                SizedBox(
+                  height: 108,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _userSectionItemTangoStatus(title: 'Jumlah kata diingat'),
+                      _separater(),
+                      _userSectionItem(
+                          title: 'Jumlah hari belajar',
+                          data: activityList.map((e) => e.date).toList().toSet().toList().length,
+                          unitTitle: 'hari'
+                      ),
+                    ],
+                  ),
+                ),
+                LinearPercentIndicator(
+                  width: MediaQuery.of(context).size.width - 40,
+                  animation: true,
+                  lineHeight: 20.0,
+                  animationDuration: 2500,
+                  percent: tangoMaster.totalAchievement,
+                  center: Text('${(tangoMaster.totalAchievement*100).toStringAsFixed(2)} %'),
+                  linearStrokeCap: LinearStrokeCap.roundAll,
+                  progressColor: ColorConfig.green,
                 ),
               ],
             )

@@ -86,6 +86,8 @@ class TangoListController extends StateNotifier<TangoMaster> {
       ..dictionary.allTangos = tangoList
       ..dictionary.sortAndFilteredTangos = tangoList;
 
+    getTotalAchievement();
+
     return tangoList;
   }
 
