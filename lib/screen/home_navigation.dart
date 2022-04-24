@@ -5,7 +5,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:bintango_jp/gen/assets.gen.dart';
 import 'package:bintango_jp/screen/dictionary_screen.dart';
-import 'package:bintango_jp/screen/lesson_selector_screen.dart';
+import 'package:bintango_jp/screen/lesson_selector/lesson_selector_screen.dart';
 import 'package:bintango_jp/screen/menu_screen.dart';
 import 'package:bintango_jp/screen/translation_screen.dart';
 

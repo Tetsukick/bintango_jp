@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bintango_jp/screen/lesson_selector/views/lesson_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,13 @@ import 'package:bintango_jp/utils/shared_preference.dart';
 import 'package:bintango_jp/utils/shimmer.dart';
 import 'package:bintango_jp/utils/utils.dart';
 import 'package:lottie/lottie.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../config/config.dart';
-import '../model/floor_database/database.dart';
-import '../model/floor_migrations/migration_v1_to_v2_add_bookmark_column_in_word_status_table.dart';
-import 'flush_card_screen.dart';
+import '../../config/config.dart';
+import '../../model/floor_database/database.dart';
+import '../../model/floor_migrations/migration_v1_to_v2_add_bookmark_column_in_word_status_table.dart';
+import '../flush_card_screen.dart';
 
 class LessonSelectorScreen extends ConsumerStatefulWidget {
   const LessonSelectorScreen({Key? key}) : super(key: key);
@@ -68,6 +70,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   final RefreshController _refreshController =
     RefreshController(initialRefresh: false);
   bool _isAlreadyTestedToday = false;
+  bool _isLoadTangoList = false;
 
   @override
   void initState() {
@@ -95,6 +98,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   Future<void> initTangoList() async {
     final lectures = await ref.read(fileControllerProvider.notifier).getPossibleLectures();
     await ref.read(tangoListControllerProvider.notifier).getAllTangoList(folder: lectures.first);
+    setState(() => _isLoadTangoList = true);
   }
 
   void initFCM() async {
@@ -153,7 +157,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
           ),
         ),
         Visibility(
-          visible: tangoMaster.dictionary.allTangos.isEmpty,
+          visible: !_isLoadTangoList,
           child: Container(
             color: Colors.black.withOpacity(0.2),
             child: Center(
@@ -177,20 +181,38 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _userSection() {
+    final tangoMaster = ref.watch(tangoListControllerProvider);
     return Card(
         child: Container(
-            height: 108,
+            height: 138,
             width: double.infinity,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Column(
               children: [
-                _userSectionItemTangoStatus(title: 'Jumlah kata diingat'),
-                _separater(),
-                _userSectionItem(
-                  title: 'Jumlah hari belajar',
-                  data: activityList.map((e) => e.date).toList().toSet().toList().length,
-                  unitTitle: 'hari'
+                SizedBox(
+                  height: 108,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _userSectionItemTangoStatus(title: 'Jumlah kata diingat'),
+                      _separater(),
+                      _userSectionItem(
+                          title: 'Jumlah hari belajar',
+                          data: activityList.map((e) => e.date).toList().toSet().toList().length,
+                          unitTitle: 'hari'
+                      ),
+                    ],
+                  ),
+                ),
+                LinearPercentIndicator(
+                  width: MediaQuery.of(context).size.width - 40,
+                  animation: true,
+                  lineHeight: 20.0,
+                  animationDuration: 2500,
+                  percent: tangoMaster.totalAchievement,
+                  center: Text('${(tangoMaster.totalAchievement*100).toStringAsFixed(2)} %'),
+                  linearStrokeCap: LinearStrokeCap.roundAll,
+                  progressColor: ColorConfig.green,
                 ),
               ],
             )
@@ -495,7 +517,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   List<Widget> _levelWidgets() {
     List<Widget> _levels = [];
     LevelGroup.values.forEach((element) {
-      _levels.add(_lectureCard(levelGroup: element));
+      _levels.add(LessonCard(levelGroup: element));
     });
     return _levels;
   }
@@ -503,138 +525,9 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   List<Widget> _categoryWidgets() {
     List<Widget> _categories = [];
     TangoCategory.values.forEach((element) {
-      _categories.add(_lectureCard(category: element));
+      _categories.add(LessonCard(category: element));
     });
     return _categories;
-  }
-
-  Widget _lectureCard({TangoCategory? category, PartOfSpeechEnum? partOfSpeech, LevelGroup? levelGroup}) {
-    String _title = '';
-    SvgGenImage _svg = Assets.svg.islam1;
-    if (category != null) {
-      _title = category.title;
-      _svg = category.svg;
-    } else if (partOfSpeech != null) {
-      _title = partOfSpeech.title;
-      _svg = partOfSpeech.svg;
-    } else if (levelGroup != null) {
-      _title = levelGroup.title;
-      _svg = levelGroup.svg;
-    }
-
-    final lectures = ref.watch(fileControllerProvider);
-    final _isLoadingLecture = lectures.isEmpty;
-    if (_isLoadingLecture) {
-      return Card(
-        child: Container(
-          width: itemCardWidth,
-          height: itemCardHeight,
-          child: Stack(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: Container(
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: FractionalOffset.bottomCenter,
-                        end: FractionalOffset.topCenter,
-                        colors: [
-                          Colors.black.withOpacity(0.5),
-                          Colors.black.withOpacity(0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(SizeConfig.smallMargin),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ShimmerWidget.rectangular(
-                        height: 20,
-                        width: double.infinity,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return Card(
-      child: InkWell(
-        onTap: () {
-          analytics(LectureSelectorItem.lessonCard,
-            others: 'category: ${category?.id}, partOfSpeech: ${partOfSpeech?.id}, levelGroup: ${levelGroup?.index}');
-
-          ref.read(tangoListControllerProvider.notifier)
-              .setLessonsData(
-                category: category,
-                partOfSpeech: partOfSpeech,
-                levelGroup: levelGroup,
-              );
-          FlashCardScreen.navigateTo(context);
-        },
-        child: Container(
-          width: itemCardWidth,
-          height: itemCardHeight,
-          child: Stack(
-            children: <Widget>[
-              _svg.svg(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: double.infinity,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: Container(
-                    width: double.infinity,
-                    height: itemCardHeight * 0.6,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: FractionalOffset.bottomCenter,
-                        end: FractionalOffset.topCenter,
-                        colors: [
-                          Colors.black.withOpacity(0.5),
-                          Colors.black.withOpacity(0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(SizeConfig.smallMargin),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget.titleWhiteLargeBold(_title, maxLines: 2)
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   Future<void> getAllWordStatus() async {
