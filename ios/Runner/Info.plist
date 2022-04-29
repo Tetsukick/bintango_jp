@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>ja_JP</string>
+	<string>id</string>
 	<key>CFBundleDisplayName</key>
 	<string>BINTANGO</string>
 	<key>CFBundleExecutable</key>
@@ -58,7 +58,7 @@
       </dict>
     </array>
     <key>NSUserTrackingUsageDescription</key>
-    <string>パーソナライズされた広告の表示のために使用いたします。</string>
+    <string>Digunakan untuk menampilkan iklan yang dipersonalisasi.</string>
     <key>LSApplicationQueriesSchemes</key>
     	<array>
     	<string>instagram-stories</string>
