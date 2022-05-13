@@ -9,79 +9,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
-class $AssetsDotGen {
-  const $AssetsDotGen();
-
-  /// File path: assets/dot/dashimaki.gif
-  AssetGenImage get dashimaki =>
-      const AssetGenImage('assets/dot/dashimaki.gif');
-
-  /// File path: assets/dot/eagle.gif
-  AssetGenImage get eagle => const AssetGenImage('assets/dot/eagle.gif');
-
-  /// File path: assets/dot/eagle_strong.gif
-  AssetGenImage get eagleStrong =>
-      const AssetGenImage('assets/dot/eagle_strong.gif');
-
-  /// File path: assets/dot/fried_egg.gif
-  AssetGenImage get friedEgg => const AssetGenImage('assets/dot/fried_egg.gif');
-
-  /// File path: assets/dot/hiyoko.gif
-  AssetGenImage get hiyoko => const AssetGenImage('assets/dot/hiyoko.gif');
-
-  /// File path: assets/dot/monster.gif
-  AssetGenImage get monster => const AssetGenImage('assets/dot/monster.gif');
-
-  /// File path: assets/dot/monster_strong.gif
-  AssetGenImage get monsterStrong =>
-      const AssetGenImage('assets/dot/monster_strong.gif');
-
-  /// File path: assets/dot/niwatori.gif
-  AssetGenImage get niwatori => const AssetGenImage('assets/dot/niwatori.gif');
-
-  /// File path: assets/dot/niwatori_break.gif
-  AssetGenImage get niwatoriBreak =>
-      const AssetGenImage('assets/dot/niwatori_break.gif');
-
-  /// File path: assets/dot/niwatori_cute_eye.gif
-  AssetGenImage get niwatoriCuteEye =>
-      const AssetGenImage('assets/dot/niwatori_cute_eye.gif');
-
-  /// File path: assets/dot/niwatori_front.gif
-  AssetGenImage get niwatoriFront =>
-      const AssetGenImage('assets/dot/niwatori_front.gif');
-
-  /// File path: assets/dot/niwatori_half_egg.gif
-  AssetGenImage get niwatoriHalfEgg =>
-      const AssetGenImage('assets/dot/niwatori_half_egg.gif');
-
-  /// File path: assets/dot/niwatori_run.gif
-  AssetGenImage get niwatoriRun =>
-      const AssetGenImage('assets/dot/niwatori_run.gif');
-
-  /// File path: assets/dot/omurice.gif
-  AssetGenImage get omurice => const AssetGenImage('assets/dot/omurice.gif');
-
-  /// File path: assets/dot/pengin_cute.gif
-  AssetGenImage get penginCute =>
-      const AssetGenImage('assets/dot/pengin_cute.gif');
-
-  /// File path: assets/dot/tori_karaage.gif
-  AssetGenImage get toriKaraage =>
-      const AssetGenImage('assets/dot/tori_karaage.gif');
-
-  /// File path: assets/dot/yakitori.gif
-  AssetGenImage get yakitori => const AssetGenImage('assets/dot/yakitori.gif');
-}
-
-class $AssetsGifGen {
-  const $AssetsGifGen();
-
-  /// File path: assets/gif/bir_bintang_kanpai.gif
-  AssetGenImage get birBintangKanpai =>
-      const AssetGenImage('assets/gif/bir_bintang_kanpai.gif');
-}
-
 class $AssetsIconGen {
   const $AssetsIconGen();
 
@@ -99,9 +26,6 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/Shiba-otukare.json
   String get shibaOtukare => 'assets/lottie/Shiba-otukare.json';
 
-  /// File path: assets/lottie/bicycle_indonesia.json
-  String get bicycleIndonesia => 'assets/lottie/bicycle_indonesia.json';
-
   /// File path: assets/lottie/check_green.json
   String get checkGreen => 'assets/lottie/check_green.json';
 
@@ -110,9 +34,6 @@ class $AssetsLottieGen {
 
   /// File path: assets/lottie/congratulation.json
   String get congratulation => 'assets/lottie/congratulation.json';
-
-  /// File path: assets/lottie/countdown_10s.json
-  String get countdown10s => 'assets/lottie/countdown_10s.json';
 
   /// File path: assets/lottie/cross_red.json
   String get crossRed => 'assets/lottie/cross_red.json';
@@ -123,9 +44,6 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/japanese-noodles.json
   String get japaneseNoodles => 'assets/lottie/japanese-noodles.json';
 
-  /// File path: assets/lottie/kanpai.json
-  String get kanpai => 'assets/lottie/kanpai.json';
-
   /// File path: assets/lottie/speaker.json
   String get speaker => 'assets/lottie/speaker.json';
 
@@ -134,9 +52,6 @@ class $AssetsLottieGen {
 
   /// File path: assets/lottie/tap.json
   String get tap => 'assets/lottie/tap.json';
-
-  /// File path: assets/lottie/timer_bomb_15s.json
-  String get timerBomb15s => 'assets/lottie/timer_bomb_15s.json';
 }
 
 class $AssetsPngGen {
@@ -306,146 +221,6 @@ class $AssetsPngGen {
   /// File path: assets/png/translation_128.png
   AssetGenImage get translation128 =>
       const AssetGenImage('assets/png/translation_128.png');
-}
-
-class $AssetsPrefectureIndonesiaGen {
-  const $AssetsPrefectureIndonesiaGen();
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Aceh.png
-  AssetGenImage get logoProvinsiAceh =>
-      const AssetGenImage('assets/prefecture_indonesia/Logo_Provinsi_Aceh.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Bali.png
-  AssetGenImage get logoProvinsiBali =>
-      const AssetGenImage('assets/prefecture_indonesia/Logo_Provinsi_Bali.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Banten.png
-  AssetGenImage get logoProvinsiBanten => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Banten.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Bengkulu.png
-  AssetGenImage get logoProvinsiBengkulu => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Bengkulu.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_DKI_Jakarta.png
-  AssetGenImage get logoProvinsiDKIJakarta => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_DKI_Jakarta.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Gorontalo.png
-  AssetGenImage get logoProvinsiGorontalo => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Gorontalo.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Jambi.png
-  AssetGenImage get logoProvinsiJambi => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Jambi.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Jawa_Barat.png
-  AssetGenImage get logoProvinsiJawaBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Jawa_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Jawa_Tengah.png
-  AssetGenImage get logoProvinsiJawaTengah => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Jawa_Tengah.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Jawa_Timur.png
-  AssetGenImage get logoProvinsiJawaTimur => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Jawa_Timur.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Barat.png
-  AssetGenImage get logoProvinsiKalimantanBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Selatan.png
-  AssetGenImage get logoProvinsiKalimantanSelatan => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Selatan.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Tengah.png
-  AssetGenImage get logoProvinsiKalimantanTengah => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Tengah.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Timur.png
-  AssetGenImage get logoProvinsiKalimantanTimur => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Timur.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Utara.png
-  AssetGenImage get logoProvinsiKalimantanUtara => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kalimantan_Utara.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Kepulauan_Bangka_Belitung.png
-  AssetGenImage get logoProvinsiKepulauanBangkaBelitung => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Kepulauan_Bangka_Belitung.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Lampung.png
-  AssetGenImage get logoProvinsiLampung => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Lampung.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Maluku.png
-  AssetGenImage get logoProvinsiMaluku => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Maluku.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Maluku_Utara.png
-  AssetGenImage get logoProvinsiMalukuUtara => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Maluku_Utara.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Nusa_Tenggara_Barat.png
-  AssetGenImage get logoProvinsiNusaTenggaraBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Nusa_Tenggara_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Nusa_Tenggara_Timur.png
-  AssetGenImage get logoProvinsiNusaTenggaraTimur => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Nusa_Tenggara_Timur.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Papua.png
-  AssetGenImage get logoProvinsiPapua => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Papua.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Papua_Barat.png
-  AssetGenImage get logoProvinsiPapuaBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Papua_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Riau.png
-  AssetGenImage get logoProvinsiRiau =>
-      const AssetGenImage('assets/prefecture_indonesia/Logo_Provinsi_Riau.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Selatan.png
-  AssetGenImage get logoProvinsiSulawesiSelatan => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Selatan.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Tengah.png
-  AssetGenImage get logoProvinsiSulawesiTengah => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Tengah.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Tenggara.png
-  AssetGenImage get logoProvinsiSulawesiTenggara => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Tenggara.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Utara.png
-  AssetGenImage get logoProvinsiSulawesiUtara => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Sulawesi_Utara.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Sumatera_Selatan.png
-  AssetGenImage get logoProvinsiSumateraSelatan => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Sumatera_Selatan.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Provinsi_Yogyakarta.png
-  AssetGenImage get logoProvinsiYogyakarta => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Provinsi_Yogyakarta.png');
-
-  /// File path: assets/prefecture_indonesia/Logo_Sumatera_Barat.png
-  AssetGenImage get logoSumateraBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Logo_Sumatera_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/Provinsi_Sulawesi_Barat.png
-  AssetGenImage get provinsiSulawesiBarat => const AssetGenImage(
-      'assets/prefecture_indonesia/Provinsi_Sulawesi_Barat.png');
-
-  /// File path: assets/prefecture_indonesia/logo_Provinsi_Kepulauan_Riau_Kepri.png
-  AssetGenImage get logoProvinsiKepulauanRiauKepri => const AssetGenImage(
-      'assets/prefecture_indonesia/logo_Provinsi_Kepulauan_Riau_Kepri.png');
-
-  /// File path: assets/prefecture_indonesia/logo_sumatera_utara.png
-  AssetGenImage get logoSumateraUtara => const AssetGenImage(
-      'assets/prefecture_indonesia/logo_sumatera_utara.png');
 }
 
 class $AssetsSvgGen {
@@ -627,13 +402,9 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
-  static const $AssetsDotGen dot = $AssetsDotGen();
-  static const $AssetsGifGen gif = $AssetsGifGen();
   static const $AssetsIconGen icon = $AssetsIconGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsPngGen png = $AssetsPngGen();
-  static const $AssetsPrefectureIndonesiaGen prefectureIndonesia =
-      $AssetsPrefectureIndonesiaGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 
