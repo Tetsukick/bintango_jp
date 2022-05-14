@@ -226,6 +226,25 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       child: Container(
           height: _cardHeight,
           width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextWidget.titleRedMedium(title),
+              Flexible(
+                  child: TextWidget.titleBlackLargestBold(
+                      isFront ? tango.indonesian! : tango.japanese!, maxLines: 2)
+              ),
+            ],
+          )
+      ),
+    );
+  }
+
+  Widget _flashCardAnsewer({required String title, required TangoEntity tango, bool isFront = true}) {
+    return Card(
+      child: Container(
+          height: _cardHeight,
+          width: double.infinity,
           child: Stack(
             children: [
               Align(
@@ -401,7 +420,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ),
                 Visibility(
                   visible: !isTrue,
-                  child: _flashCard(
+                  child: _flashCardAnsewer(
                     title: 'bahasa Jepang',
                     tango: entity,
                     isFront: false
