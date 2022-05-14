@@ -206,7 +206,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
                 ),
                 LinearPercentIndicator(
                   width: MediaQuery.of(context).size.width - 40,
-                  animation: true,
+                  animation: false,
                   lineHeight: 20.0,
                   animationDuration: 2500,
                   percent: tangoMaster.totalAchievement,
@@ -464,7 +464,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
       items: _categoryWidgets(),
       controller: _categoryCarouselController,
       index: _currentCategoryIndex,
-      autoPlay: true,
+      autoPlay: false,
     );
   }
 

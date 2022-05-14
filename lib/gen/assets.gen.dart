@@ -81,6 +81,10 @@ class $AssetsPngGen {
   AssetGenImage get cardGames =>
       const AssetGenImage('assets/png/card_games.png');
 
+  /// File path: assets/png/check_green_512.png
+  AssetGenImage get checkGreen512 =>
+      const AssetGenImage('assets/png/check_green_512.png');
+
   /// File path: assets/png/check_green_rich_64.png
   AssetGenImage get checkGreenRich64 =>
       const AssetGenImage('assets/png/check_green_rich_64.png');
@@ -100,6 +104,10 @@ class $AssetsPngGen {
   /// File path: assets/png/continue_128.png
   AssetGenImage get continue128 =>
       const AssetGenImage('assets/png/continue_128.png');
+
+  /// File path: assets/png/cross_red_512.png
+  AssetGenImage get crossRed512 =>
+      const AssetGenImage('assets/png/cross_red_512.png');
 
   /// File path: assets/png/developer_128.png
   AssetGenImage get developer128 =>
@@ -214,6 +222,9 @@ class $AssetsPngGen {
   /// File path: assets/png/sound-on_64.png
   AssetGenImage get soundOn64 =>
       const AssetGenImage('assets/png/sound-on_64.png');
+
+  /// File path: assets/png/tap_128.png
+  AssetGenImage get tap128 => const AssetGenImage('assets/png/tap_128.png');
 
   /// File path: assets/png/test_128.png
   AssetGenImage get test128 => const AssetGenImage('assets/png/test_128.png');

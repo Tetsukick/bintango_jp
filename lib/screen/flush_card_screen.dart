@@ -315,10 +315,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
           },
           child: Padding(
             padding: const EdgeInsets.all(SizeConfig.mediumSmallMargin),
-            child: Lottie.asset(
-              Assets.lottie.speaker,
-              height: _cardHeight / 3,
-            ),
+            child: Assets.png.soundOn64.image(height: 24, width: 24),
           ),
         ),
       ],
@@ -355,10 +352,7 @@ class _FlushScreenState extends ConsumerState<FlashCardScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Lottie.asset(
-                          Assets.lottie.tap,
-                          height: _cardHeight / 3,
-                        ),
+                        Assets.png.tap128.image(height: 24, width: 24),
                         SizedBox(height: SizeConfig.smallMargin,),
                         TextWidget.titleGraySmallBold('Menampilkan artinya')
                       ],
