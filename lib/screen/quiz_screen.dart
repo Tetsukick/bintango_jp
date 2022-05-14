@@ -243,7 +243,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   Widget _flashCardAnsewer({required String title, required TangoEntity tango, bool isFront = true}) {
     return Card(
       child: Container(
-          height: _cardHeight,
+          height: _cardHeight * 1.5,
           width: double.infinity,
           child: Stack(
             children: [
@@ -405,11 +405,17 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               children: [
                 Visibility(
                   visible: isTrue,
-                  child: Assets.png.checkedGreen512.image(height: _cardHeight * 2)
+                  child: Padding(
+                    padding: const EdgeInsets.all(SizeConfig.mediumMargin),
+                    child: Assets.png.checkedGreen512.image(height: _cardHeight * 1.5),
+                  )
                 ),
                 Visibility(
                     visible: !isTrue,
-                    child: Assets.png.crossRed512.image(height: _cardHeight * 2)
+                    child: Padding(
+                      padding: const EdgeInsets.all(SizeConfig.mediumMargin),
+                      child: Assets.png.crossRed512.image(height: _cardHeight * 1.5),
+                    )
                 ),
                 Visibility(
                   visible: remainTime != null,
