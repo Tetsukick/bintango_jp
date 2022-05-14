@@ -44,7 +44,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
   bool _isSoundOn = true;
   final _iconHeight = 20.0;
   final _iconWidth = 20.0;
-  late AppDatabase database;
+  AppDatabase? database;
 
   @override
   void initState() {
@@ -119,7 +119,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
   }
 
   Widget bookmark(TangoEntity entity) {
-    final wordStatusDao = database.wordStatusDao;
+    final wordStatusDao = database?.wordStatusDao;
 
     return FutureBuilder(
         future: getBookmark(entity),
@@ -129,14 +129,14 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
             bool isBookmark = status == null ? false : status.isBookmarked;
             if (status == null) {
               status = WordStatus(wordId: entity.id!, status: WordStatusType.notLearned.id, isBookmarked: false);
-              wordStatusDao.insertWordStatus(status);
+              wordStatusDao?.insertWordStatus(status);
             }
             return Padding(
               padding: const EdgeInsets.only(left: SizeConfig.mediumSmallMargin),
               child: InkWell(
                 onTap: () {
                   analytics(DictionaryDetailItem.bookmark);
-                  wordStatusDao.updateWordStatus(status!..isBookmarked = !isBookmark);
+                  wordStatusDao?.updateWordStatus(status!..isBookmarked = !isBookmark);
                   setState(() => isBookmark = !isBookmark);
                 },
                 child: isBookmark ? Assets.png.bookmarkOn64.image(height: 32, width: 32)
@@ -153,8 +153,8 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
   }
 
   Future<WordStatus?> getBookmark(TangoEntity entity) async {
-    final wordStatusDao = database.wordStatusDao;
-    final wordStatus = await wordStatusDao.findWordStatusById(entity.id!);
+    final wordStatusDao = database?.wordStatusDao;
+    final wordStatus = await wordStatusDao?.findWordStatusById(entity.id!);
     return wordStatus;
   }
 
@@ -188,6 +188,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
 
   Widget _japanese() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -196,8 +197,14 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
             Flexible(child: TextWidget.titleBlackLargestBold(this.widget.tangoEntity.japaneseKana!, maxLines: 2)),
           ],
         ),
-        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.romaji!, maxLines: 2)),
-        Flexible(child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2)),
+        Padding(
+          padding: const EdgeInsets.all(SizeConfig.smallestMargin),
+          child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.romaji!, maxLines: 2),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(SizeConfig.smallestMargin),
+          child: TextWidget.titleBlackLargeBold(this.widget.tangoEntity.japanese!, maxLines: 2),
+        ),
       ],
     );
   }
@@ -270,10 +277,7 @@ class _DictionaryDetailState extends ConsumerState<DictionaryDetail> {
           },
           child: Padding(
             padding: const EdgeInsets.all(SizeConfig.mediumSmallMargin),
-            child: Lottie.asset(
-              Assets.lottie.speaker,
-              height: 50,
-            ),
+            child: Assets.png.soundOn64.image(height: 32)
           ),
         ),
       ],
