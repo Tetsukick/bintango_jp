@@ -9,6 +9,71 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsDotGen {
+  const $AssetsDotGen();
+
+  /// File path: assets/dot/dashimaki.gif
+  AssetGenImage get dashimaki =>
+      const AssetGenImage('assets/dot/dashimaki.gif');
+
+  /// File path: assets/dot/eagle.gif
+  AssetGenImage get eagle => const AssetGenImage('assets/dot/eagle.gif');
+
+  /// File path: assets/dot/eagle_strong.gif
+  AssetGenImage get eagleStrong =>
+      const AssetGenImage('assets/dot/eagle_strong.gif');
+
+  /// File path: assets/dot/fried_egg.gif
+  AssetGenImage get friedEgg => const AssetGenImage('assets/dot/fried_egg.gif');
+
+  /// File path: assets/dot/hiyoko.gif
+  AssetGenImage get hiyoko => const AssetGenImage('assets/dot/hiyoko.gif');
+
+  /// File path: assets/dot/monster.gif
+  AssetGenImage get monster => const AssetGenImage('assets/dot/monster.gif');
+
+  /// File path: assets/dot/monster_strong.gif
+  AssetGenImage get monsterStrong =>
+      const AssetGenImage('assets/dot/monster_strong.gif');
+
+  /// File path: assets/dot/niwatori.gif
+  AssetGenImage get niwatori => const AssetGenImage('assets/dot/niwatori.gif');
+
+  /// File path: assets/dot/niwatori_break.gif
+  AssetGenImage get niwatoriBreak =>
+      const AssetGenImage('assets/dot/niwatori_break.gif');
+
+  /// File path: assets/dot/niwatori_cute_eye.gif
+  AssetGenImage get niwatoriCuteEye =>
+      const AssetGenImage('assets/dot/niwatori_cute_eye.gif');
+
+  /// File path: assets/dot/niwatori_front.gif
+  AssetGenImage get niwatoriFront =>
+      const AssetGenImage('assets/dot/niwatori_front.gif');
+
+  /// File path: assets/dot/niwatori_half_egg.gif
+  AssetGenImage get niwatoriHalfEgg =>
+      const AssetGenImage('assets/dot/niwatori_half_egg.gif');
+
+  /// File path: assets/dot/niwatori_run.gif
+  AssetGenImage get niwatoriRun =>
+      const AssetGenImage('assets/dot/niwatori_run.gif');
+
+  /// File path: assets/dot/omurice.gif
+  AssetGenImage get omurice => const AssetGenImage('assets/dot/omurice.gif');
+
+  /// File path: assets/dot/pengin_cute.gif
+  AssetGenImage get penginCute =>
+      const AssetGenImage('assets/dot/pengin_cute.gif');
+
+  /// File path: assets/dot/tori_karaage.gif
+  AssetGenImage get toriKaraage =>
+      const AssetGenImage('assets/dot/tori_karaage.gif');
+
+  /// File path: assets/dot/yakitori.gif
+  AssetGenImage get yakitori => const AssetGenImage('assets/dot/yakitori.gif');
+}
+
 class $AssetsIconGen {
   const $AssetsIconGen();
 
@@ -26,6 +91,9 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/Shiba-otukare.json
   String get shibaOtukare => 'assets/lottie/Shiba-otukare.json';
 
+  /// File path: assets/lottie/bicycle_indonesia.json
+  String get bicycleIndonesia => 'assets/lottie/bicycle_indonesia.json';
+
   /// File path: assets/lottie/check_green.json
   String get checkGreen => 'assets/lottie/check_green.json';
 
@@ -34,6 +102,9 @@ class $AssetsLottieGen {
 
   /// File path: assets/lottie/congratulation.json
   String get congratulation => 'assets/lottie/congratulation.json';
+
+  /// File path: assets/lottie/countdown_10s.json
+  String get countdown10s => 'assets/lottie/countdown_10s.json';
 
   /// File path: assets/lottie/cross_red.json
   String get crossRed => 'assets/lottie/cross_red.json';
@@ -44,6 +115,9 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/japanese-noodles.json
   String get japaneseNoodles => 'assets/lottie/japanese-noodles.json';
 
+  /// File path: assets/lottie/kanpai.json
+  String get kanpai => 'assets/lottie/kanpai.json';
+
   /// File path: assets/lottie/speaker.json
   String get speaker => 'assets/lottie/speaker.json';
 
@@ -52,6 +126,9 @@ class $AssetsLottieGen {
 
   /// File path: assets/lottie/tap.json
   String get tap => 'assets/lottie/tap.json';
+
+  /// File path: assets/lottie/timer_bomb_15s.json
+  String get timerBomb15s => 'assets/lottie/timer_bomb_15s.json';
 }
 
 class $AssetsPngGen {
@@ -413,6 +490,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsDotGen dot = $AssetsDotGen();
   static const $AssetsIconGen icon = $AssetsIconGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsPngGen png = $AssetsPngGen();
