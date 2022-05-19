@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bintango_jp/utils/common_banner_ad.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -43,7 +44,6 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   List<TangoEntity> _searchedTango = [];
   AppDatabase? database;
-  late BannerAd bannerAd;
   bool _isIndonesiaToJapanese = true;
   TextEditingController _inputController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -54,7 +54,6 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
     FirebaseAnalyticsUtils.analytics
         .setCurrentScreen(screenName: AnalyticsScreen.translation.name);
     initializeDB();
-    initializeBannerAd();
     super.initState();
   }
 
@@ -86,11 +85,7 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
                   padding: EdgeInsets.fromLTRB(0, SizeConfig.mediumSmallMargin, 0, SizeConfig.bottomBarHeight),
                   itemBuilder: (BuildContext context, int index){
                     if (index == 0) {
-                      return Container(
-                        height: 50,
-                        width: double.infinity,
-                        child: AdWidget(ad: bannerAd),
-                      );
+                      return _adWidget();
                     }
                     TangoEntity tango = tangoList.translateMaster.includedTangos[index - 1];
                     return tangoListItem(tango);
@@ -102,6 +97,23 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _adWidget() {
+    return FutureBuilder<Widget>(
+      future: Ads.buildBannerWidget(
+        context: context,
+      ),
+      builder: (_, snapshot) {
+        if (!snapshot.hasData) return Container();
+
+        return Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          child: snapshot.data,
+        );
+      },
     );
   }
 
@@ -310,29 +322,5 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
     FirebaseAnalyticsUtils.eventsTrack(AnalyticsEventEntity()
       ..name = item.name
       ..analyticsEventDetail = eventDetail);
-  }
-
-  void initializeBannerAd() {
-    final BannerAdListener listener = BannerAdListener(
-      onAdLoaded: (Ad ad) => logger.d('Ad loaded.${ad}'),
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-        logger.d('Ad failed to load: $error');
-      },
-      onAdOpened: (Ad ad) => logger.d('Ad opened.'),
-      onAdClosed: (Ad ad) => logger.d('Ad closed.'),
-      onAdImpression: (Ad ad) => logger.d('Ad impression.'),
-    );
-
-    setState(() {
-      bannerAd = BannerAd(
-        adUnitId: Platform.isIOS ? Config.adUnitIdIosBanner : Config.adUnitIdAndroidBanner,
-        size: AdSize.banner,
-        request: AdRequest(),
-        listener: listener,
-      );
-    });
-
-    bannerAd.load();
   }
 }

@@ -95,8 +95,8 @@ class _LessonCardState extends ConsumerState<LessonCard> {
       child: InkWell(
         onTap: () async {
           var rand = new math.Random();
-          int lottery = rand.nextInt(4);
-          if (lottery == 3) {
+          int lottery = rand.nextInt(3);
+          if (lottery == 0) {
             await showInterstitialAd();
           }
 

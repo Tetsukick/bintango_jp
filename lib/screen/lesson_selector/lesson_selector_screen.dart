@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bintango_jp/screen/lesson_selector/views/lesson_card.dart';
+import 'package:bintango_jp/utils/common_banner_ad.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   List<WordStatus> bookmarkList = [];
   List<Activity> activityList = [];
   late AppDatabase database;
-  late BannerAd bannerAd;
   final RefreshController _refreshController =
     RefreshController(initialRefresh: false);
   bool _isAlreadyTestedToday = false;
@@ -79,7 +79,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
     super.initState();
     initTangoList();
     initFCM();
-    initializeBannerAd();
     _confirmAlreadyTestedToday();
   }
 
@@ -173,10 +172,20 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _adWidget() {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      child: AdWidget(ad: bannerAd),
+    return Container();
+    return FutureBuilder<Widget>(
+      future: Ads.buildBannerWidget(
+        context: context,
+      ),
+      builder: (_, snapshot) {
+        if (!snapshot.hasData) return Container();
+
+        return Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          child: snapshot.data,
+        );
+      },
     );
   }
 
@@ -570,30 +579,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
     FirebaseAnalyticsUtils.eventsTrack(AnalyticsEventEntity()
       ..name = item.name
       ..analyticsEventDetail = eventDetail);
-  }
-
-  void initializeBannerAd() {
-    final BannerAdListener listener = BannerAdListener(
-      onAdLoaded: (Ad ad) => logger.d('Ad loaded.${ad}'),
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-        logger.d('Ad failed to load: $error');
-      },
-      onAdOpened: (Ad ad) => logger.d('Ad opened.'),
-      onAdClosed: (Ad ad) => logger.d('Ad closed.'),
-      onAdImpression: (Ad ad) => logger.d('Ad impression.'),
-    );
-
-    setState(() {
-      bannerAd = BannerAd(
-        adUnitId: Platform.isIOS ? Config.adUnitIdIosBanner : Config.adUnitIdAndroidBanner,
-        size: AdSize.banner,
-        request: AdRequest(),
-        listener: listener,
-      );
-    });
-
-    bannerAd.load();
   }
 
   void _onRefresh() async{
