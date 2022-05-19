@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bintango_jp/utils/common_banner_ad.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -52,13 +53,11 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   WordStatusType? _selectedWordStatusType;
   List<TangoEntity> _searchedTango = [];
   AppDatabase? database;
-  late BannerAd bannerAd;
 
   @override
   void initState() {
     FirebaseAnalyticsUtils.analytics.setCurrentScreen(screenName: AnalyticsScreen.dictionary.name);
     initializeDB();
-    initializeBannerAd();
     super.initState();
   }
 
@@ -83,11 +82,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             padding: EdgeInsets.fromLTRB(0, 64, 0, SizeConfig.bottomBarHeight),
             itemBuilder: (BuildContext context, int index){
               if (index == 0) {
-                return Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: AdWidget(ad: bannerAd),
-                );
+                return _adWidget();
               }
               TangoEntity tango = tangoList.dictionary.sortAndFilteredTangos[index - 1];
               return tangoListItem(tango);
@@ -99,6 +94,23 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
       ),
       floatingActionButton: sortAndFilterButton(),
       endDrawer: sortAndFilterDrawer(),
+    );
+  }
+
+  Widget _adWidget() {
+    return FutureBuilder<Widget>(
+      future: Ads.buildBannerWidget(
+        context: context,
+      ),
+      builder: (_, snapshot) {
+        if (!snapshot.hasData) return Container();
+
+        return Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          child: snapshot.data,
+        );
+      },
     );
   }
   
@@ -541,29 +553,5 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
     FirebaseAnalyticsUtils.eventsTrack(AnalyticsEventEntity()
       ..name = item.name
       ..analyticsEventDetail = eventDetail);
-  }
-
-  void initializeBannerAd() {
-    final BannerAdListener listener = BannerAdListener(
-      onAdLoaded: (Ad ad) => logger.d('Ad loaded.${ad}'),
-      onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-        logger.d('Ad failed to load: $error');
-      },
-      onAdOpened: (Ad ad) => logger.d('Ad opened.'),
-      onAdClosed: (Ad ad) => logger.d('Ad closed.'),
-      onAdImpression: (Ad ad) => logger.d('Ad impression.'),
-    );
-
-    setState(() {
-      bannerAd = BannerAd(
-        adUnitId: Platform.isIOS ? Config.adUnitIdIosBanner : Config.adUnitIdAndroidBanner,
-        size: AdSize.banner,
-        request: AdRequest(),
-        listener: listener,
-      );
-    });
-
-    bannerAd.load();
   }
 }
