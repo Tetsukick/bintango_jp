@@ -53,11 +53,13 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   WordStatusType? _selectedWordStatusType;
   List<TangoEntity> _searchedTango = [];
   AppDatabase? database;
+  InterstitialAd? _interstitialAd;
 
   @override
   void initState() {
     FirebaseAnalyticsUtils.analytics.setCurrentScreen(screenName: AnalyticsScreen.dictionary.name);
     initializeDB();
+    loadInterstitialAd();
     super.initState();
   }
 
@@ -98,6 +100,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   }
 
   Widget _adWidget() {
+    return Container();
     return FutureBuilder<Widget>(
       future: Ads.buildBannerWidget(
         context: context,
@@ -553,5 +556,27 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
     FirebaseAnalyticsUtils.eventsTrack(AnalyticsEventEntity()
       ..name = item.name
       ..analyticsEventDetail = eventDetail);
+  }
+
+  Future<void> loadInterstitialAd() async {
+    await InterstitialAd.load(
+        adUnitId: Platform.isIOS ?
+        Config.adUnitIdIosInterstitial : Config.adUnitIdAndroidInterstitial,
+        request: AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (InterstitialAd ad) {
+            _interstitialAd = ad;
+            logger.d('Ad loaded.${ad}');
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            logger.d('Ad failed to load: $error');
+          },
+        ));
+  }
+
+  Future<void> showInterstitialAd() async {
+    if (_interstitialAd != null) {
+      await _interstitialAd?.show();
+    }
   }
 }
