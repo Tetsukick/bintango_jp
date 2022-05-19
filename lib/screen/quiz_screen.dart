@@ -231,8 +231,33 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             children: [
               TextWidget.titleRedMedium(title),
               Flexible(
-                child: TextWidget.titleBlackLargestBold(
-                  isFront ? tango.indonesian! : tango.japanese!, maxLines: 2)
+                  child: TextWidget.titleBlackLargestBold(
+                      isFront ? tango.indonesian! : tango.japanese!, maxLines: 2)
+              ),
+            ],
+          )
+      ),
+    );
+  }
+
+  Widget _flashCardAnsewer({required String title, required TangoEntity tango, bool isFront = true}) {
+    return Card(
+      child: Container(
+          height: _cardHeight * 1.5,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextWidget.titleRedMedium(title),
+                    Flexible(child: TextWidget.titleBlackLargestBold(tango.japaneseKana!, maxLines: 2)),
+                    Flexible(child: TextWidget.titleBlackMediumBold(tango.romaji!, maxLines: 2)),
+                    Flexible(child: TextWidget.titleBlackMediumBold(tango.japanese!, maxLines: 2)),
+                  ],
+                ),
               ),
             ],
           )
@@ -378,9 +403,19 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.asset(
-                  isTrue ? Assets.lottie.checkGreen : Assets.lottie.crossRed,
-                  height: _cardHeight * 2,
+                Visibility(
+                  visible: isTrue,
+                  child: Padding(
+                    padding: const EdgeInsets.all(SizeConfig.mediumMargin),
+                    child: Assets.png.checkedGreen512.image(height: _cardHeight * 1.5),
+                  )
+                ),
+                Visibility(
+                    visible: !isTrue,
+                    child: Padding(
+                      padding: const EdgeInsets.all(SizeConfig.mediumMargin),
+                      child: Assets.png.crossRed512.image(height: _cardHeight * 1.5),
+                    )
                 ),
                 Visibility(
                   visible: remainTime != null,
@@ -391,8 +426,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ),
                 Visibility(
                   visible: !isTrue,
-                  child: _flashCard(
-                    title: 'インドネシア語',
+                  child: _flashCardAnsewer(
+                    title: 'bahasa Jepang',
                     tango: entity,
                     isFront: false
                   ),

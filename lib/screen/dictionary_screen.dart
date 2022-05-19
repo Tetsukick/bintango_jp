@@ -524,7 +524,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
     var searchTangos = allTangoList
         .where((tango) {
           return tango.indonesian!.toLowerCase().contains(search.toLowerCase())
-            || tango.japanese!.contains(search);
+            || tango.japanese!.contains(search) || tango.japaneseKana!.contains(search);
         })
         .toList();
     setState(() => _searchedTango = searchTangos);
