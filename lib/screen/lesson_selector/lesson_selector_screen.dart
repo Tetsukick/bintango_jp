@@ -75,11 +75,9 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   @override
   void initState() {
     FirebaseAnalyticsUtils.analytics.setCurrentScreen(screenName: AnalyticsScreen.lectureSelector.name);
-    initializeDB();
+    _onRefresh();
     super.initState();
-    initTangoList();
     initFCM();
-    _confirmAlreadyTestedToday();
   }
 
   void initializeDB() async {
@@ -584,6 +582,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   void _onRefresh() async{
     initializeDB();
     await initTangoList();
+    _confirmAlreadyTestedToday();
     _refreshController.refreshCompleted();
   }
 }

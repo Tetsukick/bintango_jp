@@ -367,5 +367,6 @@ class TangoListController extends StateNotifier<TangoMaster> {
 
     state = state
       ..totalAchievement = rate;
+    return;
   }
 }
