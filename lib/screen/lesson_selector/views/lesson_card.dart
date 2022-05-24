@@ -156,14 +156,17 @@ class _LessonCardState extends ConsumerState<LessonCard> {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: SizeConfig.smallestMargin),
-                  child: LinearPercentIndicator(
-                    width: 88,
-                    lineHeight: 14.0,
-                    percent: achievementRate,
-                    center: Text('${(achievementRate * 100).toStringAsFixed(2)} %'),
-                    backgroundColor: Colors.grey,
-                    progressColor: ColorConfig.green,
-                    linearStrokeCap: LinearStrokeCap.roundAll,
+                  child: Visibility(
+                    visible: !achievementRate.isNaN,
+                    child: LinearPercentIndicator(
+                      width: 88,
+                      lineHeight: 14.0,
+                      percent: achievementRate,
+                      center: Text('${(achievementRate * 100).toStringAsFixed(2)} %'),
+                      backgroundColor: Colors.grey,
+                      progressColor: ColorConfig.green,
+                      linearStrokeCap: LinearStrokeCap.roundAll,
+                    ),
                   ),
                 ),
               )

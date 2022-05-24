@@ -158,10 +158,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
           child: Container(
             color: Colors.black.withOpacity(0.2),
             child: Center(
-              child: Lottie.asset(
-                Assets.lottie.splashScreen,
-                height: 300,
-              ),
+              child: CircularProgressIndicator(),
             ),
           ),
         ),
@@ -171,20 +168,24 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
 
   Widget _adWidget() {
     return Container();
-    return FutureBuilder<Widget>(
-      future: Ads.buildBannerWidget(
-        context: context,
-      ),
-      builder: (_, snapshot) {
-        if (!snapshot.hasData) return Container();
+    if (Platform.isAndroid) {
+      return Container();
+    } else {
+      return FutureBuilder<Widget>(
+        future: Ads.buildBannerWidget(
+          context: context,
+        ),
+        builder: (_, snapshot) {
+          if (!snapshot.hasData) return Container();
 
-        return Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width,
-          child: snapshot.data,
-        );
-      },
-    );
+          return Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            child: snapshot.data,
+          );
+        },
+      );
+    }
   }
 
   Widget _userSection() {
@@ -463,6 +464,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
       items: _levelWidgets(),
       controller: _levelCarouselController,
       index: _currentLevelIndex,
+      autoPlay: Platform.isIOS
     );
   }
 
@@ -471,7 +473,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
       items: _categoryWidgets(),
       controller: _categoryCarouselController,
       index: _currentCategoryIndex,
-      autoPlay: false,
+      autoPlay: Platform.isIOS,
     );
   }
 
@@ -584,5 +586,6 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
     await initTangoList();
     _confirmAlreadyTestedToday();
     _refreshController.refreshCompleted();
+    setState(() {});
   }
 }
