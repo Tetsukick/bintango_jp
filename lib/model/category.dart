@@ -29,6 +29,11 @@ enum TangoCategory {
   iAdjective,
   naAdjective,
   interrogative,
+  directions,
+  color,
+  illnessAndAccident,
+  hobbies,
+  events
 }
 
 extension TangoCategoryExt on TangoCategory {
@@ -92,6 +97,16 @@ extension TangoCategoryExt on TangoCategory {
         return 'na - Adverbs';
       case TangoCategory.interrogative:
         return 'Interrogative';
+      case TangoCategory.directions:
+        return 'Directions';
+      case TangoCategory.color:
+        return 'Color';
+      case TangoCategory.illnessAndAccident:
+        return 'Illness/Accident';
+      case TangoCategory.hobbies:
+        return 'Hobby';
+      case TangoCategory.events:
+        return 'Event';
     }
   }
 
@@ -152,6 +167,16 @@ extension TangoCategoryExt on TangoCategory {
       case TangoCategory.naAdjective:
         return Assets.svg.cat;
       case TangoCategory.interrogative:
+        return Assets.svg.event2;
+      case TangoCategory.directions:
+        return Assets.svg.ufo;
+      case TangoCategory.color:
+        return Assets.svg.shodou;
+      case TangoCategory.illnessAndAccident:
+        return Assets.svg.rainy;
+      case TangoCategory.hobbies:
+        return Assets.svg.sport2;
+      case TangoCategory.events:
         return Assets.svg.event2;
     }
   }
@@ -214,6 +239,16 @@ extension TangoCategoryExt on TangoCategory {
         return TangoCategory.naAdjective;
       case 28:
         return TangoCategory.interrogative;
+      case 29:
+        return TangoCategory.directions;
+      case 30:
+        return TangoCategory.color;
+      case 31:
+        return TangoCategory.illnessAndAccident;
+      case 32:
+        return TangoCategory.hobbies;
+      case 33:
+        return TangoCategory.events;
       default:
         return TangoCategory.language;
     }
