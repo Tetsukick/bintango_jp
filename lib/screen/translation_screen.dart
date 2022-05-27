@@ -101,6 +101,7 @@ class _TranslationScreenState extends ConsumerState<TranslationScreen> {
   }
 
   Widget _adWidget() {
+    return Container();
     return FutureBuilder<Widget>(
       future: Ads.buildBannerWidget(
         context: context,
