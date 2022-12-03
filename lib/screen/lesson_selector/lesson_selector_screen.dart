@@ -1,12 +1,5 @@
 import 'dart:io';
 
-import 'package:bintango_jp/screen/lesson_selector/views/lesson_card.dart';
-import 'package:bintango_jp/utils/common_banner_ad.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:bintango_jp/config/color_config.dart';
 import 'package:bintango_jp/config/size_config.dart';
 import 'package:bintango_jp/domain/file_service.dart';
@@ -16,20 +9,23 @@ import 'package:bintango_jp/model/category.dart';
 import 'package:bintango_jp/model/floor_entity/activity.dart';
 import 'package:bintango_jp/model/floor_entity/word_status.dart';
 import 'package:bintango_jp/model/lecture.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bintango_jp/model/level.dart';
-import 'package:bintango_jp/model/part_of_speech.dart';
 import 'package:bintango_jp/model/word_status_type.dart';
+import 'package:bintango_jp/screen/lesson_selector/views/lesson_card.dart';
 import 'package:bintango_jp/screen/quiz_screen.dart';
 import 'package:bintango_jp/utils/analytics/analytics_event_entity.dart';
 import 'package:bintango_jp/utils/analytics/analytics_parameters.dart';
 import 'package:bintango_jp/utils/analytics/firebase_analytics.dart';
+import 'package:bintango_jp/utils/common_banner_ad.dart';
 import 'package:bintango_jp/utils/common_text_widget.dart';
 import 'package:bintango_jp/utils/logger.dart';
 import 'package:bintango_jp/utils/shared_preference.dart';
-import 'package:bintango_jp/utils/shimmer.dart';
 import 'package:bintango_jp/utils/utils.dart';
-import 'package:lottie/lottie.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -167,7 +163,7 @@ class _LessonSelectorScreenState extends ConsumerState<LessonSelectorScreen> {
   }
 
   Widget _adWidget() {
-    return Container();
+    // return Container();
     if (Platform.isAndroid) {
       return Container();
     } else {
